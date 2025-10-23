@@ -1,0 +1,24 @@
+show collections
+use LargeProjectDB
+show collections
+use database
+use
+use abcd
+show collections
+use COP4331
+show collections
+help
+ls
+show collections
+exit
+ls
+use LargeProjectDB
+show dbs
+ls
+cd
+show dbs
+ls
+use LargeProjectDB
+show dbs
+show db
+show dbs

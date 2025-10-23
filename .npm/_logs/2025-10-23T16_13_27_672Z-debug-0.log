@@ -1,0 +1,205 @@
+0 verbose cli /usr/bin/node /usr/bin/npm
+1 info using npm@10.8.2
+2 info using node@v18.20.8
+3 silly config load:file:/usr/lib/node_modules/npm/npmrc
+4 silly config load:file:/var/www/html/.npmrc
+5 silly config load:file:/root/.npmrc
+6 silly config load:file:/usr/etc/npmrc
+7 verbose title npm install mongodb
+8 verbose argv "install" "mongodb"
+9 verbose logfile logs-max:10 dir:/root/.npm/_logs/2025-10-23T16_13_27_672Z-
+10 verbose logfile /root/.npm/_logs/2025-10-23T16_13_27_672Z-debug-0.log
+11 silly packumentCache heap:520880128 maxSize:130220032 maxEntrySize:65110016
+12 silly logfile start cleaning logs, removing 1 files
+13 silly logfile done cleaning log files
+14 silly idealTree buildDeps
+15 silly fetch manifest mongodb@*
+16 silly packumentCache full:https://registry.npmjs.org/mongodb cache-miss
+17 http fetch GET 200 https://registry.npmjs.org/mongodb 420ms (cache updated)
+18 silly packumentCache full:https://registry.npmjs.org/mongodb set size:undefined disposed:false
+19 silly fetch manifest @aws-sdk/credential-providers@^3.188.0
+20 silly packumentCache full:https://registry.npmjs.org/@aws-sdk%2fcredential-providers cache-miss
+21 http fetch GET 200 https://registry.npmjs.org/@aws-sdk%2fcredential-providers 127ms (cache revalidated)
+22 silly packumentCache full:https://registry.npmjs.org/@aws-sdk%2fcredential-providers set size:1680457 disposed:false
+23 silly fetch manifest @mongodb-js/zstd@^1.1.0 || ^2.0.0
+24 silly packumentCache full:https://registry.npmjs.org/@mongodb-js%2fzstd cache-miss
+25 http fetch GET 200 https://registry.npmjs.org/@mongodb-js%2fzstd 93ms (cache revalidated)
+26 silly packumentCache full:https://registry.npmjs.org/@mongodb-js%2fzstd set size:90728 disposed:false
+27 silly fetch manifest gcp-metadata@^5.2.0
+28 silly packumentCache full:https://registry.npmjs.org/gcp-metadata cache-miss
+29 http fetch GET 200 https://registry.npmjs.org/gcp-metadata 45ms (cache revalidated)
+30 silly packumentCache full:https://registry.npmjs.org/gcp-metadata set size:188304 disposed:false
+31 silly fetch manifest kerberos@^2.0.1
+32 silly packumentCache full:https://registry.npmjs.org/kerberos cache-miss
+33 http fetch GET 200 https://registry.npmjs.org/kerberos 96ms (cache revalidated)
+34 silly packumentCache full:https://registry.npmjs.org/kerberos set size:100608 disposed:false
+35 silly fetch manifest mongodb-client-encryption@>=6.0.0 <7
+36 silly packumentCache full:https://registry.npmjs.org/mongodb-client-encryption cache-miss
+37 http fetch GET 200 https://registry.npmjs.org/mongodb-client-encryption 80ms (cache revalidated)
+38 silly packumentCache full:https://registry.npmjs.org/mongodb-client-encryption set size:253668 disposed:false
+39 silly fetch manifest snappy@^7.3.2
+40 silly packumentCache full:https://registry.npmjs.org/snappy cache-miss
+41 http fetch GET 200 https://registry.npmjs.org/snappy 116ms (cache revalidated)
+42 silly packumentCache full:https://registry.npmjs.org/snappy set size:185121 disposed:false
+43 silly fetch manifest socks@^2.7.1
+44 silly packumentCache full:https://registry.npmjs.org/socks cache-miss
+45 http fetch GET 200 https://registry.npmjs.org/socks 64ms (cache revalidated)
+46 silly packumentCache full:https://registry.npmjs.org/socks set size:168523 disposed:false
+47 silly placeDep ROOT mongodb@6.20.0 OK for: backend@1.0.0 want: *
+48 silly fetch manifest bson@^6.10.4
+49 silly packumentCache full:https://registry.npmjs.org/bson cache-miss
+50 http fetch GET 200 https://registry.npmjs.org/bson 64ms (cache revalidated)
+51 silly packumentCache full:https://registry.npmjs.org/bson set size:543379 disposed:false
+52 silly fetch manifest @mongodb-js/saslprep@^1.3.0
+53 silly packumentCache full:https://registry.npmjs.org/@mongodb-js%2fsaslprep cache-miss
+54 http fetch GET 200 https://registry.npmjs.org/@mongodb-js%2fsaslprep 115ms (cache revalidated)
+55 silly packumentCache full:https://registry.npmjs.org/@mongodb-js%2fsaslprep set size:73813 disposed:false
+56 silly fetch manifest mongodb-connection-string-url@^3.0.2
+57 silly packumentCache full:https://registry.npmjs.org/mongodb-connection-string-url cache-miss
+58 http fetch GET 200 https://registry.npmjs.org/mongodb-connection-string-url 44ms (cache revalidated)
+59 silly packumentCache full:https://registry.npmjs.org/mongodb-connection-string-url set size:118879 disposed:false
+60 silly placeDep ROOT @mongodb-js/saslprep@1.3.2 OK for: mongodb@6.20.0 want: ^1.3.0
+61 silly placeDep ROOT bson@6.10.4 OK for: mongodb@6.20.0 want: ^6.10.4
+62 silly placeDep ROOT mongodb-connection-string-url@3.0.2 OK for: mongodb@6.20.0 want: ^3.0.2
+63 silly fetch manifest sparse-bitfield@^3.0.3
+64 silly packumentCache full:https://registry.npmjs.org/sparse-bitfield cache-miss
+65 http fetch GET 200 https://registry.npmjs.org/sparse-bitfield 60ms (cache revalidated)
+66 silly packumentCache full:https://registry.npmjs.org/sparse-bitfield set size:18366 disposed:false
+67 silly fetch manifest whatwg-url@^14.1.0 || ^13.0.0
+68 silly packumentCache full:https://registry.npmjs.org/whatwg-url cache-miss
+69 http fetch GET 200 https://registry.npmjs.org/whatwg-url 54ms (cache revalidated)
+70 silly packumentCache full:https://registry.npmjs.org/whatwg-url set size:165406 disposed:false
+71 silly fetch manifest @types/whatwg-url@^11.0.2
+72 silly packumentCache full:https://registry.npmjs.org/@types%2fwhatwg-url cache-miss
+73 http fetch GET 200 https://registry.npmjs.org/@types%2fwhatwg-url 53ms (cache revalidated)
+74 silly packumentCache full:https://registry.npmjs.org/@types%2fwhatwg-url set size:25750 disposed:false
+75 silly placeDep ROOT sparse-bitfield@3.0.3 OK for: @mongodb-js/saslprep@1.3.2 want: ^3.0.3
+76 silly fetch manifest memory-pager@^1.0.2
+77 silly packumentCache full:https://registry.npmjs.org/memory-pager cache-miss
+78 http fetch GET 200 https://registry.npmjs.org/memory-pager 42ms (cache revalidated)
+79 silly packumentCache full:https://registry.npmjs.org/memory-pager set size:21090 disposed:false
+80 silly placeDep ROOT @types/whatwg-url@11.0.5 OK for: mongodb-connection-string-url@3.0.2 want: ^11.0.2
+81 silly placeDep ROOT whatwg-url@14.2.0 OK for: mongodb-connection-string-url@3.0.2 want: ^14.1.0 || ^13.0.0
+82 silly fetch manifest @types/webidl-conversions@*
+83 silly packumentCache full:https://registry.npmjs.org/@types%2fwebidl-conversions cache-miss
+84 http fetch GET 200 https://registry.npmjs.org/@types%2fwebidl-conversions 134ms (cache revalidated)
+85 silly packumentCache full:https://registry.npmjs.org/@types%2fwebidl-conversions set size:22935 disposed:false
+86 silly fetch manifest tr46@^5.1.0
+87 silly packumentCache full:https://registry.npmjs.org/tr46 cache-miss
+88 http fetch GET 200 https://registry.npmjs.org/tr46 40ms (cache revalidated)
+89 silly packumentCache full:https://registry.npmjs.org/tr46 set size:47377 disposed:false
+90 silly fetch manifest webidl-conversions@^7.0.0
+91 silly packumentCache full:https://registry.npmjs.org/webidl-conversions cache-miss
+92 http fetch GET 200 https://registry.npmjs.org/webidl-conversions 56ms (cache revalidated)
+93 silly packumentCache full:https://registry.npmjs.org/webidl-conversions set size:43893 disposed:false
+94 silly placeDep ROOT @types/webidl-conversions@7.0.3 OK for: @types/whatwg-url@11.0.5 want: *
+95 silly placeDep ROOT memory-pager@1.5.0 OK for: sparse-bitfield@3.0.3 want: ^1.0.2
+96 silly placeDep ROOT tr46@5.1.1 OK for: whatwg-url@14.2.0 want: ^5.1.0
+97 silly placeDep ROOT webidl-conversions@7.0.0 OK for: whatwg-url@14.2.0 want: ^7.0.0
+98 silly fetch manifest punycode@^2.3.1
+99 silly packumentCache full:https://registry.npmjs.org/punycode cache-miss
+100 http fetch GET 200 https://registry.npmjs.org/punycode 44ms (cache revalidated)
+101 silly packumentCache full:https://registry.npmjs.org/punycode set size:61302 disposed:false
+102 silly placeDep ROOT punycode@2.3.1 OK for: tr46@5.1.1 want: ^2.3.1
+103 silly reify moves {}
+104 silly audit bulk request {
+104 silly audit   accepts: [ '1.3.8' ],
+104 silly audit   'array-flatten': [ '1.1.1' ],
+104 silly audit   'body-parser': [ '1.20.3' ],
+104 silly audit   bytes: [ '3.1.2' ],
+104 silly audit   'call-bind-apply-helpers': [ '1.0.2' ],
+104 silly audit   'call-bound': [ '1.0.4' ],
+104 silly audit   'content-disposition': [ '0.5.4' ],
+104 silly audit   'content-type': [ '1.0.5' ],
+104 silly audit   cookie: [ '0.7.1' ],
+104 silly audit   'cookie-signature': [ '1.0.6' ],
+104 silly audit   debug: [ '2.6.9' ],
+104 silly audit   depd: [ '2.0.0' ],
+104 silly audit   destroy: [ '1.2.0' ],
+104 silly audit   'dunder-proto': [ '1.0.1' ],
+104 silly audit   'ee-first': [ '1.1.1' ],
+104 silly audit   encodeurl: [ '2.0.0', '1.0.2' ],
+104 silly audit   'es-define-property': [ '1.0.1' ],
+104 silly audit   'es-errors': [ '1.3.0' ],
+104 silly audit   'es-object-atoms': [ '1.1.1' ],
+104 silly audit   'escape-html': [ '1.0.3' ],
+104 silly audit   etag: [ '1.8.1' ],
+104 silly audit   express: [ '4.21.2' ],
+104 silly audit   finalhandler: [ '1.3.1' ],
+104 silly audit   forwarded: [ '0.2.0' ],
+104 silly audit   fresh: [ '0.5.2' ],
+104 silly audit   'function-bind': [ '1.1.2' ],
+104 silly audit   'get-intrinsic': [ '1.3.0' ],
+104 silly audit   'get-proto': [ '1.0.1' ],
+104 silly audit   gopd: [ '1.2.0' ],
+104 silly audit   'has-symbols': [ '1.1.0' ],
+104 silly audit   hasown: [ '2.0.2' ],
+104 silly audit   'http-errors': [ '2.0.0' ],
+104 silly audit   'iconv-lite': [ '0.4.24' ],
+104 silly audit   inherits: [ '2.0.4' ],
+104 silly audit   'ipaddr.js': [ '1.9.1' ],
+104 silly audit   'math-intrinsics': [ '1.1.0' ],
+104 silly audit   'media-typer': [ '0.3.0' ],
+104 silly audit   'merge-descriptors': [ '1.0.3' ],
+104 silly audit   methods: [ '1.1.2' ],
+104 silly audit   mime: [ '1.6.0' ],
+104 silly audit   'mime-db': [ '1.52.0' ],
+104 silly audit   'mime-types': [ '2.1.35' ],
+104 silly audit   ms: [ '2.0.0', '2.1.3' ],
+104 silly audit   negotiator: [ '0.6.3' ],
+104 silly audit   'object-inspect': [ '1.13.4' ],
+104 silly audit   'on-finished': [ '2.4.1' ],
+104 silly audit   parseurl: [ '1.3.3' ],
+104 silly audit   'path-to-regexp': [ '0.1.12' ],
+104 silly audit   'proxy-addr': [ '2.0.7' ],
+104 silly audit   qs: [ '6.13.0' ],
+104 silly audit   'range-parser': [ '1.2.1' ],
+104 silly audit   'raw-body': [ '2.5.2' ],
+104 silly audit   'safe-buffer': [ '5.2.1' ],
+104 silly audit   'safer-buffer': [ '2.1.2' ],
+104 silly audit   send: [ '0.19.0' ],
+104 silly audit   'serve-static': [ '1.16.2' ],
+104 silly audit   setprototypeof: [ '1.2.0' ],
+104 silly audit   'side-channel': [ '1.1.0' ],
+104 silly audit   'side-channel-list': [ '1.0.0' ],
+104 silly audit   'side-channel-map': [ '1.0.1' ],
+104 silly audit   'side-channel-weakmap': [ '1.0.2' ],
+104 silly audit   statuses: [ '2.0.1' ],
+104 silly audit   toidentifier: [ '1.0.1' ],
+104 silly audit   'type-is': [ '1.6.18' ],
+104 silly audit   unpipe: [ '1.0.0' ],
+104 silly audit   'utils-merge': [ '1.0.1' ],
+104 silly audit   vary: [ '1.1.2' ],
+104 silly audit   mongodb: [ '6.20.0' ],
+104 silly audit   '@mongodb-js/saslprep': [ '1.3.2' ],
+104 silly audit   bson: [ '6.10.4' ],
+104 silly audit   'mongodb-connection-string-url': [ '3.0.2' ],
+104 silly audit   'sparse-bitfield': [ '3.0.3' ],
+104 silly audit   '@types/whatwg-url': [ '11.0.5' ],
+104 silly audit   'whatwg-url': [ '14.2.0' ],
+104 silly audit   '@types/webidl-conversions': [ '7.0.3' ],
+104 silly audit   'memory-pager': [ '1.5.0' ],
+104 silly audit   tr46: [ '5.1.1' ],
+104 silly audit   'webidl-conversions': [ '7.0.0' ],
+104 silly audit   punycode: [ '2.3.1' ]
+104 silly audit }
+105 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 244ms
+106 silly audit report {}
+107 silly ADD node_modules/punycode
+108 silly ADD node_modules/webidl-conversions
+109 silly ADD node_modules/tr46
+110 silly ADD node_modules/memory-pager
+111 silly ADD node_modules/@types/webidl-conversions
+112 silly ADD node_modules/whatwg-url
+113 silly ADD node_modules/@types/whatwg-url
+114 silly ADD node_modules/sparse-bitfield
+115 silly ADD node_modules/mongodb-connection-string-url
+116 silly ADD node_modules/bson
+117 silly ADD node_modules/@mongodb-js/saslprep
+118 silly ADD node_modules/mongodb
+119 verbose cwd /var/www/html
+120 verbose os Linux 5.15.0-67-generic
+121 verbose node v18.20.8
+122 verbose npm  v10.8.2
+123 verbose exit 0
+124 info ok

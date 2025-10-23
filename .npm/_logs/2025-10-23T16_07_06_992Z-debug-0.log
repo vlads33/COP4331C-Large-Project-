@@ -1,0 +1,17 @@
+0 verbose cli /usr/bin/node /usr/bin/npm
+1 info using npm@10.8.2
+2 info using node@v18.20.8
+3 silly config load:file:/usr/lib/node_modules/npm/npmrc
+4 silly config load:file:/var/www/html/.npmrc
+5 silly config load:file:/root/.npmrc
+6 silly config load:file:/usr/etc/npmrc
+7 verbose title npm
+8 verbose argv
+9 verbose logfile logs-max:10 dir:/root/.npm/_logs/2025-10-23T16_07_06_992Z-
+10 verbose logfile /root/.npm/_logs/2025-10-23T16_07_06_992Z-debug-0.log
+11 verbose cwd /var/www/html
+12 verbose os Linux 5.15.0-67-generic
+13 verbose node v18.20.8
+14 verbose npm  v10.8.2
+15 verbose exit 1
+16 verbose code 1

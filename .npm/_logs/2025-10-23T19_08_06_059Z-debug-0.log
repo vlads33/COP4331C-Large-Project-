@@ -1,0 +1,47 @@
+0 verbose cli /usr/bin/node /usr/bin/npm
+1 info using npm@10.8.2
+2 info using node@v18.20.8
+3 silly config load:file:/usr/lib/node_modules/npm/npmrc
+4 silly config load:file:/root/.npmrc
+5 silly config load:file:/usr/etc/npmrc
+6 verbose title npm install bcrypt
+7 verbose argv "install" "bcrypt"
+8 verbose logfile logs-max:10 dir:/root/.npm/_logs/2025-10-23T19_08_06_059Z-
+9 verbose logfile /root/.npm/_logs/2025-10-23T19_08_06_059Z-debug-0.log
+10 silly packumentCache heap:514588672 maxSize:128647168 maxEntrySize:64323584
+11 silly logfile start cleaning logs, removing 1 files
+12 silly logfile done cleaning log files
+13 silly idealTree buildDeps
+14 silly fetch manifest bcrypt@*
+15 silly packumentCache full:https://registry.npmjs.org/bcrypt cache-miss
+16 http fetch GET 200 https://registry.npmjs.org/bcrypt 202ms (cache miss)
+17 silly packumentCache full:https://registry.npmjs.org/bcrypt set size:undefined disposed:false
+18 silly placeDep ROOT bcrypt@6.0.0 OK for:  want: *
+19 silly fetch manifest node-addon-api@^8.3.0
+20 silly packumentCache full:https://registry.npmjs.org/node-addon-api cache-miss
+21 http fetch GET 200 https://registry.npmjs.org/node-addon-api 56ms (cache miss)
+22 silly packumentCache full:https://registry.npmjs.org/node-addon-api set size:undefined disposed:false
+23 silly fetch manifest node-gyp-build@^4.8.4
+24 silly packumentCache full:https://registry.npmjs.org/node-gyp-build cache-miss
+25 http fetch GET 200 https://registry.npmjs.org/node-gyp-build 40ms (cache miss)
+26 silly packumentCache full:https://registry.npmjs.org/node-gyp-build set size:undefined disposed:false
+27 silly placeDep ROOT node-addon-api@8.5.0 OK for: bcrypt@6.0.0 want: ^8.3.0
+28 silly placeDep ROOT node-gyp-build@4.8.4 OK for: bcrypt@6.0.0 want: ^4.8.4
+29 silly reify moves {}
+30 silly tarball no local data for node-addon-api@https://registry.npmjs.org/node-addon-api/-/node-addon-api-8.5.0.tgz. Extracting by manifest.
+31 silly tarball no local data for bcrypt@https://registry.npmjs.org/bcrypt/-/bcrypt-6.0.0.tgz. Extracting by manifest.
+32 silly tarball no local data for node-gyp-build@https://registry.npmjs.org/node-gyp-build/-/node-gyp-build-4.8.4.tgz. Extracting by manifest.
+33 http fetch GET 200 https://registry.npmjs.org/node-addon-api/-/node-addon-api-8.5.0.tgz 74ms (cache miss)
+34 http fetch GET 200 https://registry.npmjs.org/node-gyp-build/-/node-gyp-build-4.8.4.tgz 86ms (cache miss)
+35 http fetch GET 200 https://registry.npmjs.org/bcrypt/-/bcrypt-6.0.0.tgz 234ms (cache miss)
+36 info run bcrypt@6.0.0 install node_modules/bcrypt node-gyp-build
+37 info run bcrypt@6.0.0 install { code: 0, signal: null }
+38 silly ADD node_modules/node-gyp-build
+39 silly ADD node_modules/node-addon-api
+40 silly ADD node_modules/bcrypt
+41 verbose cwd /root
+42 verbose os Linux 5.15.0-160-generic
+43 verbose node v18.20.8
+44 verbose npm  v10.8.2
+45 verbose exit 0
+46 info ok

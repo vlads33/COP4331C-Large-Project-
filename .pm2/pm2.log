@@ -1,0 +1,108 @@
+2025-10-15T03:45:33: PM2 log: ===============================================================================
+2025-10-15T03:45:33: PM2 log: --- New PM2 Daemon started ----------------------------------------------------
+2025-10-15T03:45:33: PM2 log: Time                 : Wed Oct 15 2025 03:45:33 GMT+0000 (Coordinated Universal Time)
+2025-10-15T03:45:33: PM2 log: PM2 version          : 5.2.2
+2025-10-15T03:45:33: PM2 log: Node.js version      : 19.7.0
+2025-10-15T03:45:33: PM2 log: Current arch         : x64
+2025-10-15T03:45:33: PM2 log: PM2 home             : /root/.pm2
+2025-10-15T03:45:33: PM2 log: PM2 PID file         : /root/.pm2/pm2.pid
+2025-10-15T03:45:33: PM2 log: RPC socket file      : /root/.pm2/rpc.sock
+2025-10-15T03:45:33: PM2 log: BUS socket file      : /root/.pm2/pub.sock
+2025-10-15T03:45:33: PM2 log: Application log path : /root/.pm2/logs
+2025-10-15T03:45:33: PM2 log: Worker Interval      : 30000
+2025-10-15T03:45:33: PM2 log: Process dump file    : /root/.pm2/dump.pm2
+2025-10-15T03:45:33: PM2 log: Concurrent actions   : 2
+2025-10-15T03:45:33: PM2 log: SIGTERM timeout      : 1600
+2025-10-15T03:45:33: PM2 log: ===============================================================================
+2025-10-16T03:45:34: PM2 log: [PM2] This PM2 is not UP TO DATE
+2025-10-16T03:45:34: PM2 log: [PM2] Upgrade to version 6.0.13
+2025-10-17T03:45:34: PM2 log: [PM2] This PM2 is not UP TO DATE
+2025-10-17T03:45:34: PM2 log: [PM2] Upgrade to version 6.0.13
+2025-10-18T03:45:34: PM2 log: [PM2] This PM2 is not UP TO DATE
+2025-10-18T03:45:34: PM2 log: [PM2] Upgrade to version 6.0.13
+2025-10-19T03:45:34: PM2 log: [PM2] This PM2 is not UP TO DATE
+2025-10-19T03:45:34: PM2 log: [PM2] Upgrade to version 6.0.13
+2025-10-20T03:45:34: PM2 log: [PM2] This PM2 is not UP TO DATE
+2025-10-20T03:45:34: PM2 log: [PM2] Upgrade to version 6.0.13
+2025-10-21T03:45:34: PM2 log: [PM2] This PM2 is not UP TO DATE
+2025-10-21T03:45:34: PM2 log: [PM2] Upgrade to version 6.0.13
+2025-10-22T03:45:34: PM2 log: [PM2] This PM2 is not UP TO DATE
+2025-10-22T03:45:34: PM2 log: [PM2] Upgrade to version 6.0.13
+2025-10-23T03:45:34: PM2 log: [PM2] This PM2 is not UP TO DATE
+2025-10-23T03:45:34: PM2 log: [PM2] Upgrade to version 6.0.13
+2025-10-23T18:47:31: PM2 log: App [express-server:0] starting in -fork mode-
+2025-10-23T18:47:31: PM2 log: App [express-server:0] online
+2025-10-23T19:05:11: PM2 log: pm2 has been killed by signal, dumping process list before exit...
+2025-10-23T19:05:11: PM2 log: Deleting process 0
+2025-10-23T19:05:11: PM2 log: Stopping app:express-server id:0
+2025-10-23T19:05:11: PM2 log: App [express-server:0] exited with code [0] via signal [SIGHUP]
+2025-10-23T19:05:11: PM2 log: pid=648986 msg=process killed
+2025-10-23T19:05:11: PM2 log: Exited peacefully
+2025-10-23T19:05:51: PM2 log: ===============================================================================
+2025-10-23T19:05:51: PM2 log: --- New PM2 Daemon started ----------------------------------------------------
+2025-10-23T19:05:51: PM2 log: Time                 : Thu Oct 23 2025 19:05:51 GMT+0000 (Coordinated Universal Time)
+2025-10-23T19:05:51: PM2 log: PM2 version          : 6.0.13
+2025-10-23T19:05:51: PM2 log: Node.js version      : 18.20.8
+2025-10-23T19:05:51: PM2 log: Current arch         : x64
+2025-10-23T19:05:51: PM2 log: PM2 home             : /root/.pm2
+2025-10-23T19:05:51: PM2 log: PM2 PID file         : /root/.pm2/pm2.pid
+2025-10-23T19:05:51: PM2 log: RPC socket file      : /root/.pm2/rpc.sock
+2025-10-23T19:05:51: PM2 log: BUS socket file      : /root/.pm2/pub.sock
+2025-10-23T19:05:51: PM2 log: Application log path : /root/.pm2/logs
+2025-10-23T19:05:51: PM2 log: Worker Interval      : 30000
+2025-10-23T19:05:51: PM2 log: Process dump file    : /root/.pm2/dump.pm2
+2025-10-23T19:05:51: PM2 log: Concurrent actions   : 2
+2025-10-23T19:05:51: PM2 log: SIGTERM timeout      : 1600
+2025-10-23T19:05:51: PM2 log: Runtime Binary       : /usr/bin/node
+2025-10-23T19:05:51: PM2 log: ===============================================================================
+2025-10-23T19:05:51: PM2 log: App [express-server:0] starting in -fork mode-
+2025-10-23T19:05:51: PM2 log: App [express-server:0] online
+2025-10-23T19:24:37: PM2 log: App [espress-server:1] starting in -fork mode-
+2025-10-23T19:24:37: PM2 log: App [espress-server:1] online
+2025-10-23T19:24:38: PM2 log: App [espress-server:1] exited with code [1] via signal [SIGINT]
+2025-10-23T19:24:38: PM2 log: App [espress-server:1] starting in -fork mode-
+2025-10-23T19:24:38: PM2 log: App [espress-server:1] online
+2025-10-23T19:24:38: PM2 log: App [espress-server:1] exited with code [1] via signal [SIGINT]
+2025-10-23T19:24:38: PM2 log: App [espress-server:1] starting in -fork mode-
+2025-10-23T19:24:38: PM2 log: App [espress-server:1] online
+2025-10-23T19:24:39: PM2 log: App [espress-server:1] exited with code [1] via signal [SIGINT]
+2025-10-23T19:24:39: PM2 log: App [espress-server:1] starting in -fork mode-
+2025-10-23T19:24:39: PM2 log: App [espress-server:1] online
+2025-10-23T19:24:40: PM2 log: App [espress-server:1] exited with code [1] via signal [SIGINT]
+2025-10-23T19:24:40: PM2 log: App [espress-server:1] starting in -fork mode-
+2025-10-23T19:24:40: PM2 log: App [espress-server:1] online
+2025-10-23T19:24:40: PM2 log: App [espress-server:1] exited with code [1] via signal [SIGINT]
+2025-10-23T19:24:40: PM2 log: App [espress-server:1] starting in -fork mode-
+2025-10-23T19:24:40: PM2 log: App [espress-server:1] online
+2025-10-23T19:24:41: PM2 log: App [espress-server:1] exited with code [1] via signal [SIGINT]
+2025-10-23T19:24:41: PM2 log: App [espress-server:1] starting in -fork mode-
+2025-10-23T19:24:41: PM2 log: App [espress-server:1] online
+2025-10-23T19:24:42: PM2 log: App [espress-server:1] exited with code [1] via signal [SIGINT]
+2025-10-23T19:24:42: PM2 log: App [espress-server:1] starting in -fork mode-
+2025-10-23T19:24:42: PM2 log: App [espress-server:1] online
+2025-10-23T19:24:43: PM2 log: App [espress-server:1] exited with code [1] via signal [SIGINT]
+2025-10-23T19:24:43: PM2 log: App [espress-server:1] starting in -fork mode-
+2025-10-23T19:24:43: PM2 log: App [espress-server:1] online
+2025-10-23T19:24:43: PM2 log: App [espress-server:1] exited with code [1] via signal [SIGINT]
+2025-10-23T19:24:43: PM2 log: App [espress-server:1] starting in -fork mode-
+2025-10-23T19:24:43: PM2 log: App [espress-server:1] online
+2025-10-23T19:24:44: PM2 log: App [espress-server:1] exited with code [1] via signal [SIGINT]
+2025-10-23T19:24:44: PM2 log: App [espress-server:1] starting in -fork mode-
+2025-10-23T19:24:44: PM2 log: App [espress-server:1] online
+2025-10-23T19:24:45: PM2 log: App [espress-server:1] exited with code [1] via signal [SIGINT]
+2025-10-23T19:24:45: PM2 log: App [espress-server:1] starting in -fork mode-
+2025-10-23T19:24:45: PM2 log: App [espress-server:1] online
+2025-10-23T19:24:45: PM2 log: App [espress-server:1] exited with code [1] via signal [SIGINT]
+2025-10-23T19:24:45: PM2 log: App [espress-server:1] starting in -fork mode-
+2025-10-23T19:24:45: PM2 log: App [espress-server:1] online
+2025-10-23T19:24:46: PM2 log: App [espress-server:1] exited with code [1] via signal [SIGINT]
+2025-10-23T19:24:46: PM2 log: App [espress-server:1] starting in -fork mode-
+2025-10-23T19:24:46: PM2 log: App [espress-server:1] online
+2025-10-23T19:24:47: PM2 log: App [espress-server:1] exited with code [1] via signal [SIGINT]
+2025-10-23T19:24:47: PM2 log: App [espress-server:1] starting in -fork mode-
+2025-10-23T19:24:47: PM2 log: App [espress-server:1] online
+2025-10-23T19:24:48: PM2 log: App [espress-server:1] exited with code [1] via signal [SIGINT]
+2025-10-23T19:24:48: PM2 log: App [espress-server:1] starting in -fork mode-
+2025-10-23T19:24:48: PM2 log: App [espress-server:1] online
+2025-10-23T19:24:48: PM2 log: App [espress-server:1] exited with code [1] via signal [SIGINT]
+2025-10-23T19:24:48: PM2 log: Script /var/cop4331Server/server.js had too many unstable restarts (16). Stopped. "errored"

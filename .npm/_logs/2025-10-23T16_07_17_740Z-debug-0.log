@@ -1,0 +1,239 @@
+0 verbose cli /usr/bin/node /usr/bin/npm
+1 info using npm@10.8.2
+2 info using node@v18.20.8
+3 silly config load:file:/usr/lib/node_modules/npm/npmrc
+4 silly config load:file:/root/.npmrc
+5 silly config load:file:/usr/etc/npmrc
+6 verbose title npm install nodemon
+7 verbose argv "install" "--global" "nodemon"
+8 verbose logfile logs-max:10 dir:/root/.npm/_logs/2025-10-23T16_07_17_740Z-
+9 verbose logfile /root/.npm/_logs/2025-10-23T16_07_17_740Z-debug-0.log
+10 silly packumentCache heap:520880128 maxSize:130220032 maxEntrySize:65110016
+11 silly logfile start cleaning logs, removing 2 files
+12 silly idealTree buildDeps
+13 silly fetch manifest nodemon@*
+14 silly packumentCache full:https://registry.npmjs.org/nodemon cache-miss
+15 silly logfile done cleaning log files
+16 http fetch GET 200 https://registry.npmjs.org/nodemon 210ms (cache miss)
+17 silly packumentCache full:https://registry.npmjs.org/nodemon set size:undefined disposed:false
+18 silly placeDep ROOT nodemon@3.1.10 OK for:  want: *
+19 silly fetch manifest debug@^4
+20 silly packumentCache full:https://registry.npmjs.org/debug cache-miss
+21 http fetch GET 200 https://registry.npmjs.org/debug 75ms (cache revalidated)
+22 silly packumentCache full:https://registry.npmjs.org/debug set size:195840 disposed:false
+23 silly fetch manifest touch@^3.1.0
+24 silly packumentCache full:https://registry.npmjs.org/touch cache-miss
+25 http fetch GET 200 https://registry.npmjs.org/touch 51ms (cache miss)
+26 silly packumentCache full:https://registry.npmjs.org/touch set size:undefined disposed:false
+27 silly fetch manifest semver@^7.5.3
+28 silly packumentCache full:https://registry.npmjs.org/semver cache-miss
+29 http fetch GET 200 https://registry.npmjs.org/semver 67ms (cache miss)
+30 silly packumentCache full:https://registry.npmjs.org/semver set size:undefined disposed:false
+31 silly fetch manifest chokidar@^3.5.2
+32 silly packumentCache full:https://registry.npmjs.org/chokidar cache-miss
+33 http fetch GET 200 https://registry.npmjs.org/chokidar 78ms (cache miss)
+34 silly packumentCache full:https://registry.npmjs.org/chokidar set size:undefined disposed:false
+35 silly fetch manifest minimatch@^3.1.2
+36 silly packumentCache full:https://registry.npmjs.org/minimatch cache-miss
+37 http fetch GET 200 https://registry.npmjs.org/minimatch 141ms (cache miss)
+38 silly packumentCache full:https://registry.npmjs.org/minimatch set size:undefined disposed:false
+39 silly fetch manifest undefsafe@^2.0.5
+40 silly packumentCache full:https://registry.npmjs.org/undefsafe cache-miss
+41 http fetch GET 200 https://registry.npmjs.org/undefsafe 64ms (cache miss)
+42 silly packumentCache full:https://registry.npmjs.org/undefsafe set size:undefined disposed:false
+43 silly fetch manifest pstree.remy@^1.1.8
+44 silly packumentCache full:https://registry.npmjs.org/pstree.remy cache-miss
+45 http fetch GET 200 https://registry.npmjs.org/pstree.remy 59ms (cache miss)
+46 silly packumentCache full:https://registry.npmjs.org/pstree.remy set size:undefined disposed:false
+47 silly fetch manifest supports-color@^5.5.0
+48 silly packumentCache full:https://registry.npmjs.org/supports-color cache-miss
+49 http fetch GET 200 https://registry.npmjs.org/supports-color 48ms (cache miss)
+50 silly packumentCache full:https://registry.npmjs.org/supports-color set size:undefined disposed:false
+51 silly fetch manifest ignore-by-default@^1.0.1
+52 silly packumentCache full:https://registry.npmjs.org/ignore-by-default cache-miss
+53 http fetch GET 200 https://registry.npmjs.org/ignore-by-default 48ms (cache miss)
+54 silly packumentCache full:https://registry.npmjs.org/ignore-by-default set size:undefined disposed:false
+55 silly fetch manifest simple-update-notifier@^2.0.0
+56 silly packumentCache full:https://registry.npmjs.org/simple-update-notifier cache-miss
+57 http fetch GET 200 https://registry.npmjs.org/simple-update-notifier 62ms (cache miss)
+58 silly packumentCache full:https://registry.npmjs.org/simple-update-notifier set size:undefined disposed:false
+59 silly placeDep node_modules/nodemon chokidar@3.6.0 OK for: nodemon@3.1.10 want: ^3.5.2
+60 silly placeDep node_modules/nodemon debug@4.4.3 OK for: nodemon@3.1.10 want: ^4
+61 silly placeDep node_modules/nodemon ignore-by-default@1.0.1 OK for: nodemon@3.1.10 want: ^1.0.1
+62 silly placeDep node_modules/nodemon minimatch@3.1.2 OK for: nodemon@3.1.10 want: ^3.1.2
+63 silly placeDep node_modules/nodemon pstree.remy@1.1.8 OK for: nodemon@3.1.10 want: ^1.1.8
+64 silly placeDep node_modules/nodemon semver@7.7.3 OK for: nodemon@3.1.10 want: ^7.5.3
+65 silly placeDep node_modules/nodemon simple-update-notifier@2.0.0 OK for: nodemon@3.1.10 want: ^2.0.0
+66 silly placeDep node_modules/nodemon supports-color@5.5.0 OK for: nodemon@3.1.10 want: ^5.5.0
+67 silly placeDep node_modules/nodemon touch@3.1.1 OK for: nodemon@3.1.10 want: ^3.1.0
+68 silly placeDep node_modules/nodemon undefsafe@2.0.5 OK for: nodemon@3.1.10 want: ^2.0.5
+69 silly fetch manifest braces@~3.0.2
+70 silly packumentCache full:https://registry.npmjs.org/braces cache-miss
+71 http fetch GET 200 https://registry.npmjs.org/braces 51ms (cache miss)
+72 silly packumentCache full:https://registry.npmjs.org/braces set size:undefined disposed:false
+73 silly fetch manifest is-glob@~4.0.1
+74 silly packumentCache full:https://registry.npmjs.org/is-glob cache-miss
+75 http fetch GET 200 https://registry.npmjs.org/is-glob 66ms (cache miss)
+76 silly packumentCache full:https://registry.npmjs.org/is-glob set size:undefined disposed:false
+77 silly fetch manifest anymatch@~3.1.2
+78 silly packumentCache full:https://registry.npmjs.org/anymatch cache-miss
+79 http fetch GET 200 https://registry.npmjs.org/anymatch 63ms (cache miss)
+80 silly packumentCache full:https://registry.npmjs.org/anymatch set size:undefined disposed:false
+81 silly fetch manifest readdirp@~3.6.0
+82 silly packumentCache full:https://registry.npmjs.org/readdirp cache-miss
+83 http fetch GET 200 https://registry.npmjs.org/readdirp 44ms (cache miss)
+84 silly packumentCache full:https://registry.npmjs.org/readdirp set size:undefined disposed:false
+85 silly fetch manifest glob-parent@~5.1.2
+86 silly packumentCache full:https://registry.npmjs.org/glob-parent cache-miss
+87 http fetch GET 200 https://registry.npmjs.org/glob-parent 74ms (cache miss)
+88 silly packumentCache full:https://registry.npmjs.org/glob-parent set size:undefined disposed:false
+89 silly fetch manifest is-binary-path@~2.1.0
+90 silly packumentCache full:https://registry.npmjs.org/is-binary-path cache-miss
+91 http fetch GET 200 https://registry.npmjs.org/is-binary-path 51ms (cache miss)
+92 silly packumentCache full:https://registry.npmjs.org/is-binary-path set size:undefined disposed:false
+93 silly fetch manifest normalize-path@~3.0.0
+94 silly packumentCache full:https://registry.npmjs.org/normalize-path cache-miss
+95 http fetch GET 200 https://registry.npmjs.org/normalize-path 48ms (cache miss)
+96 silly packumentCache full:https://registry.npmjs.org/normalize-path set size:undefined disposed:false
+97 silly fetch manifest fsevents@~2.3.2
+98 silly packumentCache full:https://registry.npmjs.org/fsevents cache-miss
+99 http fetch GET 200 https://registry.npmjs.org/fsevents 54ms (cache miss)
+100 silly packumentCache full:https://registry.npmjs.org/fsevents set size:undefined disposed:false
+101 silly fetch manifest ms@^2.1.3
+102 silly packumentCache full:https://registry.npmjs.org/ms cache-miss
+103 http fetch GET 200 https://registry.npmjs.org/ms 48ms (cache revalidated)
+104 silly packumentCache full:https://registry.npmjs.org/ms set size:92208 disposed:false
+105 silly fetch manifest brace-expansion@^1.1.7
+106 silly packumentCache full:https://registry.npmjs.org/brace-expansion cache-miss
+107 http fetch GET 200 https://registry.npmjs.org/brace-expansion 54ms (cache miss)
+108 silly packumentCache full:https://registry.npmjs.org/brace-expansion set size:undefined disposed:false
+109 silly fetch manifest has-flag@^3.0.0
+110 silly packumentCache full:https://registry.npmjs.org/has-flag cache-miss
+111 http fetch GET 200 https://registry.npmjs.org/has-flag 60ms (cache miss)
+112 silly packumentCache full:https://registry.npmjs.org/has-flag set size:undefined disposed:false
+113 silly placeDep node_modules/nodemon anymatch@3.1.3 OK for: chokidar@3.6.0 want: ~3.1.2
+114 silly placeDep node_modules/nodemon braces@3.0.3 OK for: chokidar@3.6.0 want: ~3.0.2
+115 silly placeDep node_modules/nodemon fsevents@2.3.3 OK for: chokidar@3.6.0 want: ~2.3.2
+116 silly placeDep node_modules/nodemon glob-parent@5.1.2 OK for: chokidar@3.6.0 want: ~5.1.2
+117 silly placeDep node_modules/nodemon is-binary-path@2.1.0 OK for: chokidar@3.6.0 want: ~2.1.0
+118 silly placeDep node_modules/nodemon is-glob@4.0.3 OK for: chokidar@3.6.0 want: ~4.0.1
+119 silly placeDep node_modules/nodemon normalize-path@3.0.0 OK for: chokidar@3.6.0 want: ~3.0.0
+120 silly placeDep node_modules/nodemon readdirp@3.6.0 OK for: chokidar@3.6.0 want: ~3.6.0
+121 silly fetch manifest picomatch@^2.0.4
+122 silly packumentCache full:https://registry.npmjs.org/picomatch cache-miss
+123 http fetch GET 200 https://registry.npmjs.org/picomatch 67ms (cache miss)
+124 silly packumentCache full:https://registry.npmjs.org/picomatch set size:undefined disposed:false
+125 silly fetch manifest normalize-path@^3.0.0
+126 silly packumentCache full:https://registry.npmjs.org/normalize-path cache-miss
+127 http fetch GET 200 https://registry.npmjs.org/normalize-path 3ms (cache hit)
+128 silly packumentCache full:https://registry.npmjs.org/normalize-path set size:28713 disposed:false
+129 silly fetch manifest fill-range@^7.1.1
+130 silly packumentCache full:https://registry.npmjs.org/fill-range cache-miss
+131 http fetch GET 200 https://registry.npmjs.org/fill-range 44ms (cache miss)
+132 silly packumentCache full:https://registry.npmjs.org/fill-range set size:undefined disposed:false
+133 silly fetch manifest is-glob@^4.0.1
+134 silly packumentCache full:https://registry.npmjs.org/is-glob cache-miss
+135 http fetch GET 200 https://registry.npmjs.org/is-glob 7ms (cache hit)
+136 silly packumentCache full:https://registry.npmjs.org/is-glob set size:40530 disposed:false
+137 silly fetch manifest binary-extensions@^2.0.0
+138 silly packumentCache full:https://registry.npmjs.org/binary-extensions cache-miss
+139 http fetch GET 200 https://registry.npmjs.org/binary-extensions 106ms (cache miss)
+140 silly packumentCache full:https://registry.npmjs.org/binary-extensions set size:undefined disposed:false
+141 silly fetch manifest is-extglob@^2.1.1
+142 silly packumentCache full:https://registry.npmjs.org/is-extglob cache-miss
+143 http fetch GET 200 https://registry.npmjs.org/is-extglob 79ms (cache miss)
+144 silly packumentCache full:https://registry.npmjs.org/is-extglob set size:undefined disposed:false
+145 silly fetch manifest picomatch@^2.2.1
+146 silly packumentCache full:https://registry.npmjs.org/picomatch cache-miss
+147 http fetch GET 200 https://registry.npmjs.org/picomatch 4ms (cache hit)
+148 silly packumentCache full:https://registry.npmjs.org/picomatch set size:118818 disposed:false
+149 silly placeDep node_modules/nodemon picomatch@2.3.1 OK for: anymatch@3.1.3 want: ^2.0.4
+150 silly placeDep node_modules/nodemon fill-range@7.1.1 OK for: braces@3.0.3 want: ^7.1.1
+151 silly fetch manifest to-regex-range@^5.0.1
+152 silly packumentCache full:https://registry.npmjs.org/to-regex-range cache-miss
+153 http fetch GET 200 https://registry.npmjs.org/to-regex-range 46ms (cache miss)
+154 silly packumentCache full:https://registry.npmjs.org/to-regex-range set size:undefined disposed:false
+155 silly placeDep node_modules/nodemon ms@2.1.3 OK for: debug@4.4.3 want: ^2.1.3
+156 silly placeDep node_modules/nodemon to-regex-range@5.0.1 OK for: fill-range@7.1.1 want: ^5.0.1
+157 silly fetch manifest is-number@^7.0.0
+158 silly packumentCache full:https://registry.npmjs.org/is-number cache-miss
+159 http fetch GET 200 https://registry.npmjs.org/is-number 46ms (cache miss)
+160 silly packumentCache full:https://registry.npmjs.org/is-number set size:undefined disposed:false
+161 silly placeDep node_modules/nodemon binary-extensions@2.3.0 OK for: is-binary-path@2.1.0 want: ^2.0.0
+162 silly placeDep node_modules/nodemon is-extglob@2.1.1 OK for: is-glob@4.0.3 want: ^2.1.1
+163 silly placeDep node_modules/nodemon brace-expansion@1.1.12 OK for: minimatch@3.1.2 want: ^1.1.7
+164 silly fetch manifest balanced-match@^1.0.0
+165 silly packumentCache full:https://registry.npmjs.org/balanced-match cache-miss
+166 http fetch GET 200 https://registry.npmjs.org/balanced-match 50ms (cache miss)
+167 silly packumentCache full:https://registry.npmjs.org/balanced-match set size:undefined disposed:false
+168 silly fetch manifest concat-map@0.0.1
+169 silly packumentCache full:https://registry.npmjs.org/concat-map cache-miss
+170 http fetch GET 200 https://registry.npmjs.org/concat-map 43ms (cache miss)
+171 silly packumentCache full:https://registry.npmjs.org/concat-map set size:undefined disposed:false
+172 silly placeDep node_modules/nodemon balanced-match@1.0.2 OK for: brace-expansion@1.1.12 want: ^1.0.0
+173 silly placeDep node_modules/nodemon concat-map@0.0.1 OK for: brace-expansion@1.1.12 want: 0.0.1
+174 silly placeDep node_modules/nodemon has-flag@3.0.0 OK for: supports-color@5.5.0 want: ^3.0.0
+175 silly placeDep node_modules/nodemon is-number@7.0.0 OK for: to-regex-range@5.0.1 want: ^7.0.0
+176 silly reify moves {}
+177 verbose reify failed optional dependency /usr/lib/node_modules/nodemon/node_modules/fsevents
+178 silly reify mark deleted [ '/usr/lib/node_modules/nodemon/node_modules/fsevents' ]
+179 silly tarball no local data for nodemon@https://registry.npmjs.org/nodemon/-/nodemon-3.1.10.tgz. Extracting by manifest.
+180 silly tarball no local data for brace-expansion@https://registry.npmjs.org/brace-expansion/-/brace-expansion-1.1.12.tgz. Extracting by manifest.
+181 silly tarball no local data for binary-extensions@https://registry.npmjs.org/binary-extensions/-/binary-extensions-2.3.0.tgz. Extracting by manifest.
+182 silly tarball no local data for fill-range@https://registry.npmjs.org/fill-range/-/fill-range-7.1.1.tgz. Extracting by manifest.
+183 silly tarball no local data for braces@https://registry.npmjs.org/braces/-/braces-3.0.3.tgz. Extracting by manifest.
+184 silly tarball no local data for undefsafe@https://registry.npmjs.org/undefsafe/-/undefsafe-2.0.5.tgz. Extracting by manifest.
+185 silly tarball no local data for touch@https://registry.npmjs.org/touch/-/touch-3.1.1.tgz. Extracting by manifest.
+186 silly tarball no local data for simple-update-notifier@https://registry.npmjs.org/simple-update-notifier/-/simple-update-notifier-2.0.0.tgz. Extracting by manifest.
+187 silly tarball no local data for semver@https://registry.npmjs.org/semver/-/semver-7.7.3.tgz. Extracting by manifest.
+188 silly tarball no local data for pstree.remy@https://registry.npmjs.org/pstree.remy/-/pstree.remy-1.1.8.tgz. Extracting by manifest.
+189 silly tarball no local data for ignore-by-default@https://registry.npmjs.org/ignore-by-default/-/ignore-by-default-1.0.1.tgz. Extracting by manifest.
+190 silly tarball no local data for chokidar@https://registry.npmjs.org/chokidar/-/chokidar-3.6.0.tgz. Extracting by manifest.
+191 http fetch GET 200 https://registry.npmjs.org/binary-extensions/-/binary-extensions-2.3.0.tgz 374ms (cache miss)
+192 http fetch GET 200 https://registry.npmjs.org/touch/-/touch-3.1.1.tgz 383ms (cache miss)
+193 http fetch GET 200 https://registry.npmjs.org/ignore-by-default/-/ignore-by-default-1.0.1.tgz 376ms (cache miss)
+194 http fetch GET 200 https://registry.npmjs.org/undefsafe/-/undefsafe-2.0.5.tgz 393ms (cache miss)
+195 http fetch GET 200 https://registry.npmjs.org/brace-expansion/-/brace-expansion-1.1.12.tgz 399ms (cache miss)
+196 http fetch GET 200 https://registry.npmjs.org/fill-range/-/fill-range-7.1.1.tgz 400ms (cache miss)
+197 http fetch GET 200 https://registry.npmjs.org/simple-update-notifier/-/simple-update-notifier-2.0.0.tgz 417ms (cache miss)
+198 http fetch GET 200 https://registry.npmjs.org/pstree.remy/-/pstree.remy-1.1.8.tgz 414ms (cache miss)
+199 http fetch GET 200 https://registry.npmjs.org/braces/-/braces-3.0.3.tgz 434ms (cache miss)
+200 http fetch GET 200 https://registry.npmjs.org/chokidar/-/chokidar-3.6.0.tgz 428ms (cache miss)
+201 http fetch GET 200 https://registry.npmjs.org/nodemon/-/nodemon-3.1.10.tgz 469ms (cache miss)
+202 http fetch GET 200 https://registry.npmjs.org/semver/-/semver-7.7.3.tgz 458ms (cache miss)
+203 silly ADD node_modules/nodemon
+204 silly ADD node_modules/nodemon/node_modules/is-number
+205 silly ADD node_modules/nodemon/node_modules/has-flag
+206 silly ADD node_modules/nodemon/node_modules/concat-map
+207 silly ADD node_modules/nodemon/node_modules/balanced-match
+208 silly ADD node_modules/nodemon/node_modules/brace-expansion
+209 silly ADD node_modules/nodemon/node_modules/is-extglob
+210 silly ADD node_modules/nodemon/node_modules/binary-extensions
+211 silly ADD node_modules/nodemon/node_modules/to-regex-range
+212 silly ADD node_modules/nodemon/node_modules/ms
+213 silly ADD node_modules/nodemon/node_modules/fill-range
+214 silly ADD node_modules/nodemon/node_modules/picomatch
+215 silly ADD node_modules/nodemon/node_modules/readdirp
+216 silly ADD node_modules/nodemon/node_modules/normalize-path
+217 silly ADD node_modules/nodemon/node_modules/is-glob
+218 silly ADD node_modules/nodemon/node_modules/is-binary-path
+219 silly ADD node_modules/nodemon/node_modules/glob-parent
+220 silly ADD
+221 silly ADD node_modules/nodemon/node_modules/braces
+222 silly ADD node_modules/nodemon/node_modules/anymatch
+223 silly ADD node_modules/nodemon/node_modules/undefsafe
+224 silly ADD node_modules/nodemon/node_modules/touch
+225 silly ADD node_modules/nodemon/node_modules/supports-color
+226 silly ADD node_modules/nodemon/node_modules/simple-update-notifier
+227 silly ADD node_modules/nodemon/node_modules/semver
+228 silly ADD node_modules/nodemon/node_modules/pstree.remy
+229 silly ADD node_modules/nodemon/node_modules/minimatch
+230 silly ADD node_modules/nodemon/node_modules/ignore-by-default
+231 silly ADD node_modules/nodemon/node_modules/debug
+232 silly ADD node_modules/nodemon/node_modules/chokidar
+233 verbose cwd /var/www/html
+234 verbose os Linux 5.15.0-67-generic
+235 verbose node v18.20.8
+236 verbose npm  v10.8.2
+237 verbose exit 0
+238 info ok
