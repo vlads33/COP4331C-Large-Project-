@@ -1,16 +1,16 @@
-
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "./pages/Login";
+import Home from "./pages/Home";
 
 function App() {
-
-  return (
-    <>
-
-      <h1 className="text-3xl font-bold text-center text-gold">Knights marketplace🔥</h1>
-
-
-    </>
-  )
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<Login />} />
+                <Route path="/home" element={<Home />} />
+            </Routes>
+        </Router>
+    );
 }
 
-export default App
+export default App;
