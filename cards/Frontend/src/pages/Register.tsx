@@ -7,6 +7,7 @@ export default function Register() {
     const [form, setForm] = useState({
         firstName: "",
         lastName: "",
+        username: "",
         email: "",
         password: "",
     });
@@ -31,12 +32,11 @@ export default function Register() {
 
             if (res.ok) {
                 setMessage("✅ Account created! Redirecting to login...");
-                // Redirect after 2 seconds
                 setTimeout(() => navigate("/"), 2000);
             } else {
                 setMessage("❌ " + (data.error || "Registration failed"));
             }
-        } catch (err) {
+        } catch  {
             setLoading(false);
             setMessage("❌ Network error, please try again.");
         }
@@ -63,6 +63,14 @@ export default function Register() {
                     placeholder="Last Name"
                     value={form.lastName}
                     onChange={(e) => setForm({ ...form, lastName: e.target.value })}
+                    className="w-full px-3 py-2 rounded bg-gray-700 focus:outline-none"
+                    required
+                />
+                <input
+                    type="text"
+                    placeholder="Username"
+                    value={form.username}
+                    onChange={(e) => setForm({ ...form, username: e.target.value })}
                     className="w-full px-3 py-2 rounded bg-gray-700 focus:outline-none"
                     required
                 />
