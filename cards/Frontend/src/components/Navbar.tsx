@@ -47,6 +47,15 @@ const Navbar: React.FC = () => {
                 </li>
                 <li>
                     <Link
+                        to="/profile"
+                        className="hover:text-yellow-400 transition duration-300"
+                    >
+                        Profile
+                    </Link>
+                </li>
+
+                <li>
+                    <Link
                         to="/about"
                         className="hover:text-yellow-400 transition duration-300"
                     >
