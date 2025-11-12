@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
@@ -7,7 +7,7 @@ export default function Sell() {
     const [form, setForm] = useState({
         name: "",
         price: "",
-        stock_quantity: "",
+        stock_quantity: "1",
     });
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [message, setMessage] = useState("");
@@ -26,9 +26,7 @@ export default function Sell() {
 
             const res = await fetch("/api/products", {
                 method: "POST",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
+                headers: { Authorization: `Bearer ${token}` },
                 body: formData,
             });
 
@@ -46,6 +44,13 @@ export default function Sell() {
         }
     }
 
+    const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        if (/^\d*\.?\d{0,2}$/.test(value)) {
+            setForm({ ...form, price: value });
+        }
+    };
+
     return (
         <div className="min-h-screen bg-gray-900 text-white">
             <Navbar />
@@ -58,6 +63,7 @@ export default function Sell() {
                         Sell a Product
                     </h2>
 
+                    {/* Product Name */}
                     <input
                         type="text"
                         placeholder="Product Name"
@@ -67,36 +73,52 @@ export default function Sell() {
                         required
                     />
 
-                    <input
-                        type="number"
-                        placeholder="Price ($)"
-                        value={form.price}
-                        onChange={(e) => setForm({ ...form, price: e.target.value })}
-                        className="w-full px-3 py-2 rounded bg-gray-700 focus:outline-none"
-                        required
-                    />
+                    {/* Price with $ */}
+                    <div className="relative">
+                        <span className="absolute left-3 top-2 text-gray-400">$</span>
+                        <input
+                            type="text"
+                            inputMode="decimal"
+                            placeholder="Price"
+                            value={form.price}
+                            onChange={handlePriceChange}
+                            className="w-full pl-7 pr-3 py-2 rounded bg-gray-700 focus:outline-none"
+                            required
+                        />
+                    </div>
 
-                    <input
-                        type="number"
-                        placeholder="Stock Quantity"
-                        value={form.stock_quantity}
-                        onChange={(e) =>
-                            setForm({ ...form, stock_quantity: e.target.value })
-                        }
-                        className="w-full px-3 py-2 rounded bg-gray-700 focus:outline-none"
-                        required
-                    />
+                    {/* Stock Quantity */}
+                    <div className="flex flex-col">
+                        <label className="text-sm text-gray-400 mb-1">Stock Quantity</label>
+                        <input
+                            type="number"
+                            value={form.stock_quantity}
+                            min="1"
+                            onChange={(e) => {
+                                const val = parseInt(e.target.value);
+                                if (val >= 1)
+                                    setForm({ ...form, stock_quantity: e.target.value });
+                            }}
+                            placeholder="Enter quantity (default: 1)"
+                            className="w-full px-3 py-2 rounded bg-gray-700 focus:outline-none"
+                            required
+                        />
+                    </div>
 
-                    {/* 🔽 File Upload Button */}
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onChange={(e) =>
-                            setImageFile(e.target.files ? e.target.files[0] : null)
-                        }
-                        className="w-full text-gray-300"
-                    />
+                    {/* File Upload */}
+                    <div className="flex flex-col">
+                        <label className="text-sm text-gray-400 mb-1">Upload Image</label>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) =>
+                                setImageFile(e.target.files ? e.target.files[0] : null)
+                            }
+                            className="w-full text-gray-300"
+                        />
+                    </div>
 
+                    {/* Submit */}
                     <button
                         type="submit"
                         className="w-full bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-semibold py-2 rounded"
