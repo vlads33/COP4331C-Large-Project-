@@ -14,15 +14,30 @@ export default function Listings() {
     const [search, setSearch] = useState("");
 
     async function loadProducts(term = "") {
-        const res = await fetch("/api/search_products", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ search: term }),
-        });
-        const data = await res.json();
-        setProducts(data);
+        try {
+            const res = await fetch("/api/search_products", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ search: term }),
+            });
+
+            // Safely parse JSON
+            const data = await res.json();
+            console.log("API Response:", data);
+
+            // Prevent crashes
+            if (Array.isArray(data)) {
+                setProducts(data);
+            } else {
+                setProducts([]);
+            }
+        } catch (err) {
+            console.error("Fetch error:", err);
+            setProducts([]);
+        }
     }
 
+    // Load all products
     useEffect(() => {
         loadProducts();
     }, []);
@@ -36,13 +51,13 @@ export default function Listings() {
                     Product Listings 🛍️
                 </h1>
 
-                {/* Search */}
+                {/* Search Section */}
                 <div className="mb-6">
                     <input
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                         placeholder="Search products..."
-                        className="px-4 py-2 rounded-l bg-gray-800 text-gray-200"
+                        className="px-4 py-2 rounded-l bg-gray-800 text-gray-200 focus:outline-none"
                     />
                     <button
                         onClick={() => loadProducts(search)}
@@ -52,13 +67,16 @@ export default function Listings() {
                     </button>
                 </div>
 
-                {/* Products */}
+                {/* Products Display */}
                 {products.length === 0 ? (
                     <p className="text-gray-400">No products found.</p>
                 ) : (
                     <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                         {products.map((p: Product) => (
-                            <div key={p._id} className="bg-gray-800 p-4 rounded-xl">
+                            <div
+                                key={p._id}
+                                className="bg-gray-800 p-4 rounded-xl hover:scale-105 transition-transform duration-200"
+                            >
                                 <img
                                     src={p.image_location || "https://via.placeholder.com/150"}
                                     alt={p.name || "Product image"}
