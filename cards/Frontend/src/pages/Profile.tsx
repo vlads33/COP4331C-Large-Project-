@@ -25,19 +25,22 @@ const Profile: React.FC = () => {
                 }
 
                 const response = await fetch("http://knightmp.xyz/api/users/profile", {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
+                    headers: { Authorization: `Bearer ${token}` },
                 });
 
                 if (!response.ok) {
                     throw new Error("Failed to fetch user profile");
                 }
 
-                const data = await response.json();
+                //JSON response properly
+                const data: User = await response.json();
                 setUser(data);
-            } catch (err: any) {
-                setError(err.message);
+            } catch (err: unknown) {
+                if (err instanceof Error) {
+                    setError(err.message);
+                } else {
+                    setError("An unknown error occurred.");
+                }
             } finally {
                 setLoading(false);
             }
@@ -46,57 +49,54 @@ const Profile: React.FC = () => {
         fetchUserProfile();
     }, []);
 
-    if (loading)
-        return (
-            <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center">
-                Loading profile...
-            </div>
-        );
-
-    if (error)
-        return (
-            <div className="min-h-screen bg-gray-900 text-red-500 flex items-center justify-center">
-                {error}
-            </div>
-        );
-
     return (
         <div className="min-h-screen bg-gray-900 text-white">
             <Navbar />
 
-            <div className="max-w-3xl mx-auto mt-12 bg-gray-800 p-8 rounded-2xl shadow-xl">
-                <h2 className="text-3xl font-bold text-yellow-400 mb-6 text-center">
-                    My Profile
-                </h2>
+            <div className="flex flex-col items-center justify-center mt-12">
+                {/* Loading */}
+                {loading && <p className="text-gray-400 text-lg">Loading profile...</p>}
 
-                {user ? (
-                    <div className="space-y-4">
-                        <p>
-                            <strong>Username:</strong> {user.username}
-                        </p>
-                        <p>
-                            <strong>Email:</strong> {user.email}
-                        </p>
-                        <p>
-                            <strong>Name:</strong> {user.firstName} {user.lastName}
-                        </p>
-                        <p>
-                            <strong>Joined:</strong>{" "}
-                            {new Date(user.dateCreated).toLocaleDateString()}
-                        </p>
-
+                {/* Error */}
+                {!loading && error && (
+                    <div className="bg-gray-800 text-red-400 p-6 rounded-lg shadow-lg text-center">
+                        <p>{error}</p>
                         <button
-                            onClick={() => {
-                                localStorage.removeItem("token");
-                                window.location.href = "/";
-                            }}
-                            className="mt-6 bg-yellow-400 text-gray-900 px-6 py-2 rounded-lg font-semibold hover:bg-yellow-500 transition duration-300"
+                            onClick={() => (window.location.href = "/")}
+                            className="mt-4 bg-yellow-400 text-gray-900 px-4 py-2 rounded hover:bg-yellow-500 transition"
                         >
-                            Logout
+                            Return to Login
                         </button>
                     </div>
-                ) : (
-                    <p>No user data found.</p>
+                )}
+
+                {/* Success */}
+                {!loading && !error && user && (
+                    <div className="max-w-3xl bg-gray-800 p-8 rounded-2xl shadow-xl">
+                        <h2 className="text-3xl font-bold text-yellow-400 mb-6 text-center">
+                            My Profile
+                        </h2>
+
+                        <div className="space-y-4">
+                            <p><strong>Username:</strong> {user.username}</p>
+                            <p><strong>Email:</strong> {user.email}</p>
+                            <p><strong>Name:</strong> {user.firstName} {user.lastName}</p>
+                            <p>
+                                <strong>Joined:</strong>{" "}
+                                {new Date(user.dateCreated).toLocaleDateString()}
+                            </p>
+
+                            <button
+                                onClick={() => {
+                                    localStorage.removeItem("token");
+                                    window.location.href = "/";
+                                }}
+                                className="mt-6 bg-yellow-400 text-gray-900 px-6 py-2 rounded-lg font-semibold hover:bg-yellow-500 transition duration-300"
+                            >
+                                Logout
+                            </button>
+                        </div>
+                    </div>
                 )}
             </div>
         </div>
