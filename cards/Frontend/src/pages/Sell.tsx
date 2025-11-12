@@ -24,9 +24,10 @@ export default function Sell() {
             formData.append("stock_quantity", form.stock_quantity);
             if (imageFile) formData.append("image", imageFile);
 
+            formData.append("accessToken", token || "");
+
             const res = await fetch("/api/add_product", {
                 method: "POST",
-                headers: { Authorization: `Bearer ${token}` },
                 body: formData,
             });
 
