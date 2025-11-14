@@ -163,11 +163,6 @@ const Profile: React.FC = () => {
                                 />
                             </div>
 
-                            {/* Joined date - not editable */}
-                            <p>
-                                <strong>Joined:</strong>{" "}
-                                {new Date(user.dateCreated).toLocaleDateString()}
-                            </p>
 
                             {/* Success message */}
                             {success && (
