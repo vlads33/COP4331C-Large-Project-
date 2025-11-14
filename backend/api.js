@@ -68,14 +68,15 @@ exports.setApp = function (app, mongoose)
 
                 delete result.__v;
                 delete result._id;
-                var ret = JWT.createToken( result );
+                var token = JWT.createToken( result );
 
-                if ("error" in ret) { // for web token errors
-                    ret["error"] = "JWT: " + ret["error"];
-                    res.status(400).json(ret);
+                if ("error" in token) { // for web token errors
+                    token["error"] = "JWT: " + token["error"];
+                    res.status(400).json(token);
                 }
                 else {
-                    res.status(200).json(ret);
+                    result["accessToken"] = token["accessToken"];
+                    res.status(200).json(result);
                 }
             }
             catch(err) {
@@ -317,7 +318,7 @@ app.post("/api/delete_product", async (req, res) => {
         }
     });
 
-    /*app.post("/api/get_items", async (req, res) => {
+    app.post("/api/get_items", async (req, res) => {
         // incoming: JWT Token ("accessToken"), order ID (active if unspecified),
             // product or item ID (all if unspecified)
 
@@ -328,19 +329,38 @@ app.post("/api/delete_product", async (req, res) => {
         }
 
         const userID = token.payload["userID"];
-        var results = await Product.find({ "userID":userID });
+        var order;
+        if ("orderID" in req.body) {
+            order = await Order.find({ "userID":userID, "_id":req.body["orderID"] });
+        }
+        else {
+            order = await Order.find({ "userID":userID, "status":"active" });
+        }
 
-        if (results.length == 0) {
-            res.status(404).json({ "error":"No products exist for this user" });
+        if (order.length == 0) {
+            res.status(404).json({ "error":"Order does not exist" });
             return;
+        }
+        order = order[0].toJSON();
+        const orderID = order["_id"];
+
+        var items;
+        if ("itemID" in req.body) {
+            items = await Item.find({ "orderID":orderID, "_id":req.body["itemID"] });
+        }
+        else if ("productID" in req.body) {
+            items = await Item.find({ "orderID":orderID, "productID":req.body["productID"] });
+        }
+        else {
+            items = await Item.find({ "orderID":orderID });
         }
 
         try {
             var _ret = [];
-            for (var i = 0; i < results.length; i++) {
-                var result = results[i].toJSON();
+            for (var i = 0; i < items.length; i++) {
+                var result = items[i].toJSON();
 
-                result["productID"] = result["_id"];
+                result["itemID"] = result["_id"];
                 delete result.__v;
                 delete result._id;
 
@@ -353,9 +373,130 @@ app.post("/api/delete_product", async (req, res) => {
         catch (err) {
             res.status(400).json({ "error":err.message });
         }
-    });*/
+    });
 
-app.post("/api/deposit", async (req, res) => {
+    app.post("/api/get_orders", async (req, res) => {
+        // incoming: JWT Token ("accessToken")
+
+        const token = tokenDecode(req.body["accessToken"]);
+        if ("error" in token) {
+            res.status(400).json(token);
+            return;
+        }
+
+        const userID = token.payload["userID"];
+        var actives = await Order.find({ "userID":userID, "status":"active" }).sort({ "dateCreated":"desc" });
+        var pendings = await Order.find({ "userID":userID, "status":"pending" }).sort({ "dateCreated":"desc" });
+        var completes = await Order.find({ "userID":userID, "status":"complete" }).sort({ "dateCreated":"desc" });
+        var results = [].concat(actives, pendings, completes);
+
+        try {
+            var _ret = [];
+            for (var i = 0; i < results.length; i++) {
+                var result = results[i].toJSON();
+
+                result["orderID"] = result["_id"];
+                delete result.__v;
+                delete result._id;
+
+                _ret.push(result);
+            }
+
+            var ret = { "results":_ret };
+            refreshReturn(ret, res, token);
+        }
+        catch (err) {
+            res.status(400).json({ "error":err.message });
+        }
+    });
+
+    app.post("/api/delete_item", async (req, res) => {
+        // incoming: JWT Token ("accessToken"), product or item ID
+
+        const token = tokenDecode(req.body["accessToken"]);
+        if ("error" in token) {
+            res.status(400).json(token);
+            return;
+        }
+
+        const userID = token.payload["userID"];
+        var order = await Order.find({ "userID":userID, "status":"active" });
+
+        if (order.length == 0) {
+            res.status(404).json({ "error":"No active order" });
+            return;
+        }
+        order = order[0].toJSON();
+        const orderID = order["_id"];
+
+        var items;
+        if ("itemID" in req.body) {
+            items = await Item.find({ "orderID":orderID, "_id":req.body["itemID"] });
+        }
+        else if ("productID" in req.body) {
+            items = await Item.find({ "orderID":orderID, "productID":req.body["productID"] });
+        }
+        else {
+            res.status(404).json({ "error":"Item not found" });
+            return;
+        }
+        if (items.length == 0) {
+            res.status(404).json({ "error":"Item not found" });
+            return;
+        }
+
+        try {
+            for (var i = 0; i < items.length; i++) {
+                var result = items[i].toJSON();
+                var deleted = await Item.findByIdAndDelete(result["_id"]);
+                console.log("Deleted Item: ", deleted);
+            }
+
+            refreshReturn({}, res, token);
+        }
+        catch (err) {
+            res.status(400).json({ "error":err.message });
+        }
+    });
+
+    app.post("/api/clear_order", async (req, res) => {
+        // incoming: JWT Token ("accessToken")
+        const token = tokenDecode(req.body["accessToken"]);
+        if ("error" in token) {
+            res.status(400).json(token);
+            return;
+        }
+
+        const userID = token.payload["userID"];
+        var order = await Order.find({ "userID":userID, "status":"active" });
+
+        if (order.length == 0) {
+            res.status(404).json({ "error":"No active order" });
+            return;
+        }
+        order = order[0].toJSON();
+        const orderID = order["_id"];
+
+        var items = await Item.find({ "orderID":orderID });
+
+        try {
+            for (var i = 0; i < items.length; i++) {
+                var result = items[i].toJSON();
+                var deleted = await Item.findByIdAndDelete(result["_id"]);
+                console.log("Deleted Item: ", deleted);
+            }
+
+            var deleted = await Order.findByIdAndDelete(orderID);
+            console.log("Deleted Order: ", deleted);
+
+            refreshReturn({}, res, token);
+        }
+        catch (err) {
+            res.status(400).json({ "error":err.message });
+        }
+    });
+
+    app.post("/api/deposit", async (req, res) => {
         // incoming: JWT Token ("accessToken"), deposit (positive)
 
         const token = tokenDecode(req.body["accessToken"]);
