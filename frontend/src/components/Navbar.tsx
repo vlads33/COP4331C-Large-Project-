@@ -17,6 +17,7 @@ const Navbar: React.FC = () => {
                 onClick={() => navigate("/home")}
             >
                 Knights<span className="text-white">Marketplace</span>
+
             </h1>
 
             {/* Center: Links */}
@@ -54,6 +55,7 @@ const Navbar: React.FC = () => {
                     </Link>
                 </li>
 
+
                 <li>
                     <Link
                         to="/about"
@@ -63,8 +65,19 @@ const Navbar: React.FC = () => {
                     </Link>
                 </li>
             </ul>
+            <ul >
+            <li>
+                <Link
+                    to="/cart"
+                    className="hover:text-yellow-400 transition duration-300 text-2xl"
+                >
+                    🛒
+                </Link>
+            </li>
+            </ul>
 
             {/* Right: Login or Logout Button */}
+
             {localStorage.getItem("token") ? (
                 <button
                     onClick={handleLogout}
