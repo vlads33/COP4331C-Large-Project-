@@ -375,7 +375,7 @@ app.post("/api/delete_product", async (req, res) => {
         }
     });
 
-    app.post("/api/get_orders", async (req, res) => {
+    app.post("/api/order_history", async (req, res) => {
         // incoming: JWT Token ("accessToken")
 
         const token = tokenDecode(req.body["accessToken"]);
@@ -490,6 +490,193 @@ app.post("/api/delete_product", async (req, res) => {
             console.log("Deleted Order: ", deleted);
 
             refreshReturn({}, res, token);
+        }
+        catch (err) {
+            res.status(400).json({ "error":err.message });
+        }
+    });
+
+    app.post("/api/checkout", async (req, res) => {
+        // incoming: JWT Token ("accessToken"), shippingAddress
+
+        const token = tokenDecode(req.body["accessToken"]);
+        if ("error" in token) {
+            res.status(400).json(token);
+            return;
+        }
+
+        if (!("shippingAddress" in req.body)) {
+            res.status(400).json({ "error":"Must specify shipping address" });
+            return;
+        }
+
+        const userID = token.payload["userID"];
+        var user = await User.find({ "_id":userID });
+        user = user[0].toJSON();
+        var order = await Order.find({ "userID":userID, "status":"active" });
+
+        if (order.length == 0) {
+            res.status(404).json({ "error":"No active order" });
+            return;
+        }
+        order = order[0].toJSON();
+        const orderID = order["_id"];
+
+        var items = await Item.find({ "orderID":orderID });
+
+        try {
+            var changes = {};
+            var totalPrice = 0;
+            for (var i = 0; i < items.length; i++) {
+                var result = items[i].toJSON();
+
+                var p = await Product.find({ "_id":result["productID"] });
+                p = p[0].toJSON();
+                totalPrice += p["price"] * result["quantity"];
+
+                if (result.productID in changes) {
+                    changes[result.productID] -= result["quantity"];
+                }
+                else {
+                    changes[result.productID] = p["stockQuantity"] - result["quantity"];
+                }
+
+                if (changes[result.productID] < 0) {
+                    res.status(400).json({ "error":`Insufficient quantity of ${p.name}` });
+                    return;
+                }
+            }
+
+            if (!("balance" in user) || totalPrice > user["balance"]) {
+                res.status(400).json({ "error":`Insufficient balance (${totalPrice} needed)` });
+                return;
+            }
+
+            const now = new Date(Date.now());
+            var newOrder = await Order.findByIdAndUpdate(orderID, { "shippingAddress":req.body["shippingAddress"], "dateCreated":now, "status":"pending" }, { "new":true });
+            console.log("Updated order: ", newOrder);
+
+            var newUser = await User.findByIdAndUpdate(userID, { "balance":(user["balance"] - totalPrice) }, { "new":true });
+            console.log("Updated user: ", newUser);
+
+            const itemUpdates = await Item.updateMany({ "orderID":orderID }, { $set: { "status":"pending" } });
+            if (!itemUpdates.acknowledged) {
+                res.status(500).json({ "error":"Unknown error" });
+                console.log(itemUpdates);
+                await User.findByIdAndUpdate(userID, { "balance":(user["balance"] + totalPrice) });
+                await Order.findByIdAndUpdate(orderID, { "status":"active" });
+            }
+
+            for (i of Object.keys(changes)) {
+                var newProduct = await Product.findByIdAndUpdate(i, { "stockQuantity":changes[i] }, { "new":true });
+                console.log("Updated Product: ", newProduct);
+            }
+
+            refreshReturn({}, res, token);
+        }
+        catch (err) {
+            res.status(400).json({ "error":err.message });
+        }
+    });
+
+    app.post("/api/get_orders", async (req, res) => {
+        // incoming: JWT Token ("accessToken"), Product ID
+
+        const token = tokenDecode(req.body["accessToken"]);
+        if ("error" in token) {
+            res.status(400).json(token);
+            return;
+        }
+
+        const userID = token.payload["userID"];
+        const productID = req.body["productID"];
+
+        const results = await Product.find({ "_id":productID });
+        if (results.length == 0) {
+            res.status(404).json({ "error":"Invalid product ID." });
+            return;
+        }
+        const result = results[0];
+
+        if (result["userID"].toString() !== userID) {
+            res.status(403).json({ "error":"Permission denied; cannot edit a product without ownership." });
+            return;
+        }
+
+        const items = await Item.find({ "productID":productID, "status":"pending" });
+
+        try {
+            var _ret = [];
+            for (var i = 0; i < items.length; i++) {
+                var result = items[i].toJSON();
+
+                var order = await Order.find({ "_id":result["orderID"] });
+                order = order[0].toJSON();
+
+                result["itemID"] = result["_id"];
+                result["shippingAddress"] = order["shippingAddress"];
+                reult["dateCreated"] = order["dateCreated"];
+                delete result.__v;
+                delete result._id;
+
+                _ret.push(result);
+            }
+
+            _ret.sort((a, b) => a.dateCreated - b.dateCreated);
+            var ret = { "results":_ret };
+            refreshReturn(ret, res, token);
+        }
+        catch (err) {
+            res.status(400).json({ "error":err.message });
+        }
+    });
+
+    app.post("/api/mark_order", async (req, res) => {
+        // incoming: JWT Token ("accessToken"), Item ID
+
+        const token = tokenDecode(req.body["accessToken"]);
+        if ("error" in token) {
+            res.status(400).json(token);
+            return;
+        }
+
+        const userID = token.payload["userID"];
+        const productID = req.body["productID"];
+
+        const results = await Product.find({ "_id":productID });
+        if (results.length == 0) {
+            res.status(404).json({ "error":"Invalid product ID." });
+            return;
+        }
+        const result = results[0];
+
+        if (result["userID"].toString() !== userID) {
+            res.status(403).json({ "error":"Permission denied; cannot edit a product without ownership." });
+            return;
+        }
+
+        const items = await Item.find({ "productID":productID, "status":"pending" });
+
+        try {
+            var _ret = [];
+            for (var i = 0; i < items.length; i++) {
+                var result = items[i].toJSON();
+
+                var order = await Order.find({ "_id":result["orderID"] });
+                order = order[0].toJSON();
+
+                result["itemID"] = result["_id"];
+                result["shippingAddress"] = order["shippingAddress"];
+                reult["dateCreated"] = order["dateCreated"];
+                delete result.__v;
+                delete result._id;
+
+                _ret.push(result);
+            }
+
+            _ret.sort((a, b) => a.dateCreated - b.dateCreated);
+            var ret = { "results":_ret };
+            refreshReturn(ret, res, token);
         }
         catch (err) {
             res.status(400).json({ "error":err.message });
@@ -613,3 +800,5 @@ function tokenDecode(token) {
         console.log(err.message);
     }
 }
+
+function cancelCheckout()
