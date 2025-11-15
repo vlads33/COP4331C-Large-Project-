@@ -5,6 +5,33 @@ const JWT = require("./createJWT.js");
 exports.setApp = function (app, mongoose)
 {
     const bcrypt = require("bcrypt");
+
+    const multer = require("multer");
+    const path = require("path");
+    const storage = multer.diskStorage({
+        "destination": function (req, file, cb) {
+            cb(null, "/root/database/images/");
+        },
+        "filename": function (req, file, cb) {
+            const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+            cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
+        }
+    });
+
+    const upload = multer({
+        "storage": storage,
+        "fileFilter": function (req, file, callback) {
+            var ext = path.extname(file.originalname);
+            if (ext !== ".png" && ext !== ".jpg" && ext !== ".gif" && ext !== ".jpeg") {
+                return callback( new Error("Only images are allowed") );
+            }
+            callback(null, true);
+        },
+        "limits":{
+            "fileSize": (1024 * 1024 * 5)
+        }
+    });
+
     const User = require("/root/database/models/User.js");
     const Product = require("/root/database/models/Product.js");
     const Order = require("/root/database/models/Order.js");
@@ -691,6 +718,10 @@ app.post("/api/delete_product", async (req, res) => {
         catch (err) {
             res.status(400).json({ "error":err.message });
         }
+    });
+
+    app.post("/api/upload", upload.single("image"), async (req, res, next) => {
+        res.json({ "path":req.file["path"] });
     });
 
     app.post("/api/deposit", async (req, res) => {
