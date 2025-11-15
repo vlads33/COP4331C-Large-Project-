@@ -554,10 +554,10 @@ app.post("/api/delete_product", async (req, res) => {
 
             const now = new Date(Date.now());
             var newOrder = await Order.findByIdAndUpdate(orderID, { "shippingAddress":req.body["shippingAddress"], "dateCreated":now, "status":"pending" }, { "new":true });
-            console.log("Updated order: ", newOrder);
+            console.log("Updated Order: ", newOrder);
 
             var newUser = await User.findByIdAndUpdate(userID, { "balance":(user["balance"] - totalPrice) }, { "new":true });
-            console.log("Updated user: ", newUser);
+            console.log("Updated User: ", newUser);
 
             const itemUpdates = await Item.updateMany({ "orderID":orderID }, { $set: { "status":"pending" } });
             if (!itemUpdates.acknowledged) {
@@ -599,7 +599,7 @@ app.post("/api/delete_product", async (req, res) => {
         const result = results[0];
 
         if (result["userID"].toString() !== userID) {
-            res.status(403).json({ "error":"Permission denied; cannot edit a product without ownership." });
+            res.status(403).json({ "error":"Permission denied; cannot view orders for a product without ownership." });
             return;
         }
 
@@ -632,7 +632,7 @@ app.post("/api/delete_product", async (req, res) => {
     });
 
     app.post("/api/mark_order", async (req, res) => {
-        // incoming: JWT Token ("accessToken"), Item ID
+        // incoming: JWT Token ("accessToken"), Item ID, status (fulfilled or refunded, fulfilled if unspecified)
 
         const token = tokenDecode(req.body["accessToken"]);
         if ("error" in token) {
@@ -641,42 +641,52 @@ app.post("/api/delete_product", async (req, res) => {
         }
 
         const userID = token.payload["userID"];
-        const productID = req.body["productID"];
+        const itemID = req.body["itemID"];
 
-        const results = await Product.find({ "_id":productID });
+        const results = await Item.find({ "_id":itemID, "status":"pending" });
         if (results.length == 0) {
-            res.status(404).json({ "error":"Invalid product ID." });
+            res.status(404).json({ "error":"Invalid item ID." });
             return;
         }
         const result = results[0];
 
-        if (result["userID"].toString() !== userID) {
-            res.status(403).json({ "error":"Permission denied; cannot edit a product without ownership." });
+        var product = await Product.find({ "_id":result["productID"] });
+        product = product[0];
+
+        if (product["userID"].toString() !== userID) {
+            res.status(403).json({ "error":"Permission denied; cannot view orders for a product without ownership." });
             return;
         }
 
-        const items = await Item.find({ "productID":productID, "status":"pending" });
+        var order = await Order.find({ "_id":result["orderID"] });
+        order = order[0];
+
+        const totalPrice = result["quantity"] * product["price"];
 
         try {
-            var _ret = [];
-            for (var i = 0; i < items.length; i++) {
-                var result = items[i].toJSON();
-
-                var order = await Order.find({ "_id":result["orderID"] });
-                order = order[0].toJSON();
-
-                result["itemID"] = result["_id"];
-                result["shippingAddress"] = order["shippingAddress"];
-                reult["dateCreated"] = order["dateCreated"];
-                delete result.__v;
-                delete result._id;
-
-                _ret.push(result);
+            var updated;
+            var status;
+            if ("status" in req.body && req.body["status"] == "refunded") {
+                status = "refunded";
+                updated = await User.findByIdAndUpdate(order["userID"], {$inc: { "balance":totalPrice } }, { "new":true });
+                console.log("Updated User: ", updated);
+            }
+            else {
+                status = "fulfilled";
+                updated = await User.findByIdAndUpdate(userID, {$inc: { "balance":totalPrice } }, { "new":true });
+                console.log("Updated User: ", updated);
             }
 
-            _ret.sort((a, b) => a.dateCreated - b.dateCreated);
-            var ret = { "results":_ret };
-            refreshReturn(ret, res, token);
+            updated = await Item.findByIdAndUpdate(itemID, { "status":status }, { "new": true });
+            console.log("Updated Item: ", updated);
+
+            const items = await Item.find({ "orderID":order["_id"], "status":"pending" });
+            if (items.length == 0) {
+                updated = await Order.findByIdAndUpdate(result["orderID"], { "status":"complete" }, { "new":true });
+                console.log("Updated Order: ", updated);
+            }
+
+            refreshReturn({}, res, token);
         }
         catch (err) {
             res.status(400).json({ "error":err.message });
