@@ -3,16 +3,20 @@ require("dotenv").config();
 
 exports.createToken = function (body)
 {
-    return _createToken(body);
+    return _createToken(body, "24h");
 }
 
-_createToken = function (body)
+exports.customToken = function(body, time) {
+    return _createToken(body, time);
+}
+
+_createToken = function (body, time)
 {
     var ret;
     try {
         const expiration = new Date();
         //const user = {userId:id,firstName:fn,lastName:ln};
-        const accessToken = jwt.sign(body, process.env.TOKEN_SECRET);
+        const accessToken = jwt.sign(body, process.env.TOKEN_SECRET, { "expiresIn":time });
         // In order to expire with a value other than the default, use the
         // following
         /*

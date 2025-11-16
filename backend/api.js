@@ -2,6 +2,11 @@ require("express");
 require("mongoose");
 const JWT = require("./createJWT.js");
 
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API);
+
+var reset_passwords = {};
+
 exports.setApp = function (app, mongoose)
 {
     const bcrypt = require("bcrypt");
@@ -43,7 +48,6 @@ exports.setApp = function (app, mongoose)
 
         var error = "";
 
-        //const db = client.db("LargeProjectDB");
         const username = req.body["username"];
         const results = await User.find({ "username":username });
 
@@ -55,8 +59,11 @@ exports.setApp = function (app, mongoose)
         const newUser = new User(req.body);
 
         try {
-            //const result = await db.collection("Users").insertOne(req.body);
             newUser.save();
+
+            var token = JWT.customToken({ "UID":newUser._id }, "30m");
+            sendMail(newUser.email, token["accessToken"], "verify");
+
             res.status(200).json("");
         }
         catch (err) {
@@ -76,18 +83,8 @@ exports.setApp = function (app, mongoose)
         //const results = await db.collection("Users").find({"username":user,"password":password}).toArray();
         const results = await User.find({ "username":username });
 
-        //var id = -1;
-        //var firstName = "";
-        //var lastName = "";
-        //var email = "";
-
         const isMatch = await bcrypt.compare(password, results[0].password);
         if(results.length > 0 && isMatch) {
-            //id = results[0].UserId;
-            //firstname = results[0].FirstName;
-            //lastName = results[0].LastName;
-            //email = results[0].Email;
-
             try {
                 var result = results[0].toJSON();
 
@@ -270,7 +267,7 @@ exports.setApp = function (app, mongoose)
         }
     });
 
-app.post("/api/delete_product", async (req, res) => {
+    app.post("/api/delete_product", async (req, res) => {
         // incoming: JWT Token ("accessToken"), Product ID
 
         const token = tokenDecode(req.body["accessToken"]);
@@ -623,9 +620,9 @@ app.post("/api/delete_product", async (req, res) => {
             res.status(404).json({ "error":"Invalid product ID." });
             return;
         }
-        const result = results[0];
+        const product = results[0];
 
-        if (result["userID"].toString() !== userID) {
+        if (product["userID"].toString() !== userID) {
             res.status(403).json({ "error":"Permission denied; cannot view orders for a product without ownership." });
             return;
         }
@@ -754,7 +751,7 @@ app.post("/api/delete_product", async (req, res) => {
         }
     });
 
-app.post("/api/update_user", async (req, res) => {
+    app.post("/api/update_user", async (req, res) => {
         // incoming: JWT Token ("accessToken"), User changes
 
         const token = tokenDecode(req.body["accessToken"]);
@@ -809,6 +806,95 @@ app.post("/api/update_user", async (req, res) => {
     });
 
 
+    app.post("/api/password_reset", async (req, res) => {
+        // incoming: username, new password
+
+        const results = await User.find({ "username":req.body["username"] });
+        if (results.length == 0) {
+            res.status(400).json({ "error":"Invalid username" });
+            return;
+        }
+
+        try {
+            var result = results[0].toJSON();
+
+            const userID = result["_id"];
+            const email = result["email"];
+            const new_password = req.body["password"];
+            var token = JWT.customToken({ "UID":userID }, "30m");
+
+            if ("error" in token) { // for web token errors
+                token["error"] = "JWT: " + token["error"];
+                res.status(400).json(token);
+            }
+            else {
+                reset_passwords[userID] = new_password;
+                sendMail(email, token["accessToken"], "reset");
+            }
+        }
+        catch(err) {
+            res.status(400).json({ "error":err.message });
+        }
+    });
+
+    app.get("/api/confirm_reset", async (req, res) => {
+        // incoming: JWT Token ("token") in header
+
+        const token = tokenDecode(req.query.token);
+        if ("error" in token) {
+            res.status(400).json(token);
+            return;
+        }
+
+        const userID = token.payload["UID"];
+
+        try {
+            const results = await User.find({ "_id":userID });
+            const result = results[0];
+
+            var request;
+            if (userID in reset_passwords) {
+                request = { "password":reset_passwords[userID] };
+                delete reset_passwords[userID];
+            }
+            else {
+                res.status(400).json({ "error":"Token expired or invalid" });
+            }
+
+            console.log("Request: ", request);
+            var update = await User.findByIdAndUpdate(userID, request, { "new":true });
+            console.log("Updated User: ", update);
+            refreshReturn({}, res, token);
+        }
+        catch (err) {
+            res.status(400).json({ "error":err.message });
+        }
+    });
+
+    app.get("/api/verify_email", async (req, res) => {
+        // incoming: JWT Token ("token") in header
+
+        const token = tokenDecode(req.query.token);
+        if ("error" in token) {
+            res.status(400).json(token);
+            return;
+        }
+
+        const userID = token.payload["UID"];
+
+        try {
+            var request = { "verified":true };
+
+            console.log("Request: ", request);
+            var update = await User.findByIdAndUpdate(userID, request, { "new":true });
+            console.log("Updated User: ", update);
+            refreshReturn({}, res, token);
+        }
+        catch (err) {
+            res.status(400).json({ "error":err.message });
+        }
+    });
+
     /*app.get("/api/testget", async (req, res, next) => {
         const results = await Product.find({"name":"randomname"});
         res.status(200).json(results);
@@ -842,4 +928,24 @@ function tokenDecode(token) {
     }
 }
 
-function cancelCheckout()
+function sendMail(email, token, type) {
+    var message;
+    if (type == "reset") {
+        message = {
+            "to":email,
+            "from":"cop4331.a3yio@simplelogin.com",
+            "subject":"Password Reset",
+            "html":`Please click <a href=\"http://knightmp.xyz/api/confirm_reset?token=${token}\">HERE</a> to finalize password reset.`
+        };
+    }
+    else { // verify
+        message = {
+            "to":email,
+            "from":"cop4331.a3yio@simplelogin.com",
+            "subject":"Verify Email",
+            "html":`Please click <a href=\"http://knightmp.xyz/api/verify_email?token=${token}\">HERE</a> to verify your email.`
+        };
+    }
+
+    sgMail.send(message).then(response => console.log("Email Sent... ", response)).catch(err => console.log(err.message));
+}
