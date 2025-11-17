@@ -87,6 +87,11 @@ exports.setApp = function (app, mongoose)
         if(results.length > 0 && isMatch) {
             try {
                 var result = results[0].toJSON();
+                if (!("verified" in result) || !result.verified) {
+                    var token = JWT.customToken({ "UID":result._id }, "30m");
+                    sendMail(result.email, token["accessToken"], "verify");
+                    res.status(400).json({ "error":"Please verify your email" });
+                }
 
                 result["userID"] = result["_id"];
 
@@ -639,7 +644,7 @@ exports.setApp = function (app, mongoose)
 
                 result["itemID"] = result["_id"];
                 result["shippingAddress"] = order["shippingAddress"];
-                reult["dateCreated"] = order["dateCreated"];
+                result["dateCreated"] = order["dateCreated"];
                 delete result.__v;
                 delete result._id;
 
@@ -751,6 +756,29 @@ exports.setApp = function (app, mongoose)
         }
     });
 
+    app.post("/api/check_balance", async (req, res) => {
+        // incoming: JWT Token ("accessToken")
+
+        const token = tokenDecode(req.body["accessToken"]);
+        if ("error" in token) {
+            res.status(400).json(token);
+            return;
+        }
+
+        const userID = token.payload["userID"];
+
+        const results = await User.find({ "_id":userID });
+        const result = results[0];
+
+        try {
+            const bal = result.balance;
+            refreshReturn({ "balance":bal }, res, token);
+        }
+        catch (err) {
+            res.status(400).json({ "error":err.message });
+        }
+    });
+
     app.post("/api/update_user", async (req, res) => {
         // incoming: JWT Token ("accessToken"), User changes
 
@@ -830,6 +858,7 @@ exports.setApp = function (app, mongoose)
             else {
                 reset_passwords[userID] = new_password;
                 sendMail(email, token["accessToken"], "reset");
+                res.status(200).json({});
             }
         }
         catch(err) {
@@ -864,7 +893,7 @@ exports.setApp = function (app, mongoose)
             console.log("Request: ", request);
             var update = await User.findByIdAndUpdate(userID, request, { "new":true });
             console.log("Updated User: ", update);
-            refreshReturn({}, res, token);
+            res.redirect("http://knightmp.xyz/?success=true");
         }
         catch (err) {
             res.status(400).json({ "error":err.message });
@@ -888,7 +917,7 @@ exports.setApp = function (app, mongoose)
             console.log("Request: ", request);
             var update = await User.findByIdAndUpdate(userID, request, { "new":true });
             console.log("Updated User: ", update);
-            refreshReturn({}, res, token);
+            res.redirect("http://knightmp.xyz/?success=true");
         }
         catch (err) {
             res.status(400).json({ "error":err.message });
