@@ -1,3 +1,13 @@
+exit
+show
+db.products.find().pretty()
+exit
+db.Users.find().pretty()
+db.Users.find()
+show collections
+use LargeProjectDB
+show dbs
+show
 show collections
 use LargeProjectDB
 show collections

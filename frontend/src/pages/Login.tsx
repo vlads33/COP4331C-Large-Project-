@@ -27,11 +27,7 @@ const Login: React.FC = () => {
                 return;
             }
 
-            // Save token in localStorage
-            localStorage.setItem("token", data.accessToken);
-            console.log("JWT saved:", data.accessToken);
-
-            // Redirect to home
+            localStorage.setItem("accessToken", data.accessToken);
             navigate("/home");
         } catch (err) {
             console.error(err);
@@ -69,6 +65,14 @@ const Login: React.FC = () => {
                         />
                     </div>
 
+                    {/* Forgot Password */}
+                    <p
+                        className="text-yellow-400 text-sm text-right cursor-pointer hover:underline"
+                        onClick={() => navigate("/forgot-password")}
+                    >
+                        Forgot password?
+                    </p>
+
                     {error && (
                         <p className="text-red-500 text-sm font-medium text-center">{error}</p>
                     )}
@@ -83,10 +87,12 @@ const Login: React.FC = () => {
 
                 <p className="text-gray-400 text-sm text-center mt-6">
                     Don’t have an account?{" "}
-                    <span     onClick={() => navigate("/register")}
-                              className="text-yellow-400 hover:underline cursor-pointer">
-            Register
-          </span>
+                    <span
+                        onClick={() => navigate("/register")}
+                        className="text-yellow-400 hover:underline cursor-pointer"
+                    >
+                        Register
+                    </span>
                 </p>
             </div>
         </div>
@@ -94,3 +100,4 @@ const Login: React.FC = () => {
 };
 
 export default Login;
+

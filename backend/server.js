@@ -35,16 +35,19 @@ connectDB();
     console.log("GET Request Successful!");
     res.send("Hello World!\n");
 });*/
+app.use("/images", express.static("/root/database/images"));
+
 
 var api = require("./api.js");
 api.setApp(app, connectDB);
 
 // Serve React build
-app.use(express.static(path.join(__dirname, "/root/frontend/dist")));
+app.use(express.static("/root/frontend/dist"));
 
-// Catch-all route (for React Router)
-app.get(/^\/(?!api).*/, (req, res) => {
-  res.sendFile(path.join(__dirname, "/root/frontend/dist", "index.html"));
+// Catch-all route (React Router)
+app.get(/^\/(?!api|images).*/, (req, res) => {
+  res.sendFile("/root/frontend/dist/index.html");
 });
+
 
 app.listen(5000, console.log("Server starting on port 5000")); // start Node + Express server on port 5000

@@ -10,19 +10,33 @@
 
 # hlsearch on (H) or off (h):
 ~h
+# Last Search Pattern:
+~MSle0~/\V\<import\>
+
+# Last Substitute String:
+$
+
 # Command Line History (newest to oldest):
 :wq
-|2,0,1761247763,,"wq"
+|2,0,1763391011,,"wq"
 :q!
-|2,0,1761247679,,"q!"
+|2,0,1763390105,,"q!"
 :q
-|2,0,1761247677,,"q"
+|2,0,1763390102,,"q"
+:vim --version | grep clipboard
+|2,0,1763327556,,"vim --version | grep clipboard"
 :w
-|2,0,1761246615,,"w"
+|2,0,1763250862,,"w"
+:syntax on
+|2,0,1763248967,,"syntax on"
 :Q!
 |2,0,1761120685,,"Q!"
 
 # Search String History (newest to oldest):
+? @$
+|2,1,1763354845,,"@$"
+?//findOne
+|2,1,1763249125,47,"/findOne"
 
 # Expression History (newest to oldest):
 
@@ -31,259 +45,1098 @@
 # Debug Line History (newest to oldest):
 
 # Registers:
-""1	LINE	0
-	    console.log('Product saved successfully!');
-|3,1,1,1,1,0,1761247739,"    console.log('Product saved successfully!');"
-"2	LINE	0
-	    console.log('User saved successfully!');
-|3,0,2,1,1,0,1761247089,"    console.log('User saved successfully!');"
-"3	LINE	0
-	//password 
-|3,0,3,1,1,0,1761246610,"//password "
-"4	LINE	0
+"0	LINE	0
+	import { useEffect, useState } from "react";
+	import Navbar from "../components/Navbar";
+	import { useNavigate } from "react-router-dom";
 	
-|3,0,4,1,1,0,1761246610,""
-"5	LINE	0
+	interface Product {
+	    productID: string;
+	    name: string;
+	    price: number;
+	    stockQuantity: number;
+	    description: string;
+	    imageLocation?: string;
+	}
 	
-|3,0,5,1,1,0,1761246610,""
-"6	LINE	0
-		});
-|3,0,6,1,1,0,1761246610,"	});"
-"7	LINE	0
-		password: {type: String, required: true}
-|3,0,7,1,1,0,1761246609,"	password: {type: String, required: true}"
-"8	LINE	0
-		email:    {type: String, required: true, unique: true},
-|3,0,8,1,1,0,1761246609,"	email:    {type: String, required: true, unique: true},"
-"9	LINE	0
-		username: {type: String, required: true, unique: true},
-|3,0,9,1,1,0,1761246609,"	username: {type: String, required: true, unique: true},"
+	const BASE_URL = "http://knightmp.xyz";
+	
+	// Convert backend path → frontend URL
+	function getImageURL(path?: string): string {
+	    if (!path) return "http://knightmp.xyz/images/image-1763353454106-343714756.jpg";
+	    const file = path.split("/").pop();
+	    return `${BASE_URL}/images/${file}`;
+	}
+	
+	export default function Sell() {
+	    const navigate = useNavigate();
+	
+	    const [myProducts, setMyProducts] = useState<Product[]>([]);
+	    const [name, setName] = useState("");
+	    const [price, setPrice] = useState("");
+	    const [stock, setStock] = useState("");
+	    const [description, setDescription] = useState("");
+	    const [imageFile, setImageFile] = useState<File | null>(null);
+	    const [loading, setLoading] = useState(true);
+	
+	    const getToken = () => localStorage.getItem("accessToken");
+	    const saveToken = (t?: string) =>
+	        t && t !== "undefined" && localStorage.setItem("accessToken", t);
+	
+	    // -----------------------------
+	    // LOAD USER PRODUCTS
+	    // -----------------------------
+	    async function loadMyProducts(forcedToken?: string) {
+	        const token = forcedToken || getToken();
+	
+	        try {
+	            const res = await fetch("/api/user_products", {
+	                method: "POST",
+	                headers: { "Content-Type": "application/json" },
+	                body: JSON.stringify({ accessToken: token }),
+	            });
+|3,0,0,1,49,0,1763354845,"import { useEffect, useState } from \"react\";","import Navbar from \"../components/Navbar\";","import { useNavigate } from \"react-router-dom\";","","interface Product {","    productID: string;","    name: string;","    price: number;","    stockQuantity: number;","    description: string;","    imageLocation?: string;","}","","const BASE_URL = \"http://knightmp.xyz\";","","// Convert backend path → frontend URL",>47
+|<"function getImageURL(path?: string): string {","    if (!path) return \"http://knightmp.xyz/images/image-1763353454106-343714756.jpg\";","    const file = path.split(\"/\").pop();","    return `${BASE_URL}/images/${file}`;","}","","export default function Sell() {","    const navigate = useNavigate();","","    const [myProducts, setMyProducts] = useState<Product[]>([]);","    const [name, setName] = useState(\"\");","    const [price, setPrice] = useState(\"\");",>47
+|<"    const [stock, setStock] = useState(\"\");","    const [description, setDescription] = useState(\"\");","    const [imageFile, setImageFile] = useState<File | null>(null);","    const [loading, setLoading] = useState(true);","","    const getToken = () => localStorage.getItem(\"accessToken\");","    const saveToken = (t?: string) =>","        t && t !== \"undefined\" && localStorage.setItem(\"accessToken\", t);","","    // -----------------------------","    // LOAD USER PRODUCTS",>38
+|<"    // -----------------------------","    async function loadMyProducts(forcedToken?: string) {","        const token = forcedToken || getToken();","","        try {","            const res = await fetch(\"/api/user_products\", {","                method: \"POST\",","                headers: { \"Content-Type\": \"application/json\" },","                body: JSON.stringify({ accessToken: token }),","            });"
+""1	CHAR	0
+	import React, { useEffect, useState } from "react";
+	import { useNavigate } from "react-router-dom";
+	import Navbar from "../components/Navbar";
+	
+	interface Order {
+	    orderID: string;
+	    status: string;
+	    dateCreated: string;
+	    shippingAddress?: string;
+	}
+	
+	interface OrderHistoryResponse {
+	    accessToken?: string;
+	    results?: Order[];
+	    error?: string;
+	}
+	
+	const Orders: React.FC = () => {
+	    const navigate = useNavigate();
+	
+	    const [orders, setOrders] = useState<Order[]>([]);
+	    const [loading, setLoading] = useState(true);
+	    const [error, setError] = useState("");
+	
+	    let accessToken = localStorage.getItem("accessToken");
+	
+	    if (!accessToken || accessToken === "undefined" || accessToken === "") {
+	        accessToken = null;
+	    }
+	
+	    // ---------------- FETCH ORDERS ----------------
+	    useEffect(() => {
+	        if (!accessToken) {
+	            navigate("/");
+	            return;
+	        }
+	
+	        fetchOrders(accessToken);
+	        // eslint-disable-next-line
+	    }, []);
+	
+	    const fetchOrders = async (tokenToUse: string) => {
+	        setLoading(true);
+	
+	        const response = await fetch("/api/order_history", {
+	            method: "POST",
+	            headers: { "Content-Type": "application/json" },
+	            body: JSON.stringify({ accessToken: tokenToUse })
+	        });
+	
+|3,1,1,0,50,0,1763391002,"import React, { useEffect, useState } from \"react\";","import { useNavigate } from \"react-router-dom\";","import Navbar from \"../components/Navbar\";","","interface Order {","    orderID: string;","    status: string;","    dateCreated: string;","    shippingAddress?: string;","}","","interface OrderHistoryResponse {","    accessToken?: string;","    results?: Order[];","    error?: string;","}","",>34
+|<"const Orders: React.FC = () => {","    const navigate = useNavigate();","","    const [orders, setOrders] = useState<Order[]>([]);","    const [loading, setLoading] = useState(true);","    const [error, setError] = useState(\"\");","","    let accessToken = localStorage.getItem(\"accessToken\");","","    if (!accessToken || accessToken === \"undefined\" || accessToken === \"\") {","        accessToken = null;","    }","","    // ---------------- FETCH ORDERS ----------------",>23
+|<"    useEffect(() => {","        if (!accessToken) {","            navigate(\"/\");","            return;","        }","","        fetchOrders(accessToken);","        // eslint-disable-next-line","    }, []);","","    const fetchOrders = async (tokenToUse: string) => {","        setLoading(true);","","        const response = await fetch(\"/api/order_history\", {","            method: \"POST\",","            headers: { \"Content-Type\": \"application/json\" },",>63
+|<"            body: JSON.stringify({ accessToken: tokenToUse })","        });",""
+"2	CHAR	0
+	import { useEffect, useState } from "react";
+	import { useNavigate } from "react-router-dom";
+	import Navbar from "../components/Navbar";
+	
+	interface Product {
+	    productID: string;
+	    name: string;
+	    price: number;
+	    stock_quantity?: number;
+	    stockQuantity?: number;
+	    description?: string;
+	    imageLocation?: string;
+	}
+	
+	const BASE_URL = "http://knightmp.xyz";
+	
+	// Always convert DB file path to a public image URL
+	function getImageURL(path?: string): string {
+	    if (!path) return "https://via.placeholder.com/150";
+	
+	    const file = path.split("/").pop()!;
+	    return `${BASE_URL}/images/${file}`;
+	}
+	
+	export default function Listings() {
+	    const navigate = useNavigate();
+	
+	    const [myProducts, setMyProducts] = useState<Product[]>([]);
+	    const [products, setProducts] = useState<Product[]>([]);
+	    const [loading, setLoading] = useState(true);
+	
+	    const getToken = () => localStorage.getItem("accessToken");
+	    const saveToken = (t?: string) => t && localStorage.setItem("accessToken", t);
+	
+	    // Determine stock safely
+	    function getStock(p: Product): number {
+	        return p.stock_quantity ?? p.stockQuantity ?? 0;
+	    }
+	
+	    // Load ALL products
+	    async function loadProducts() {
+	        try {
+	            const res = await fetch("/api/search_products", {
+	                method: "POST",
+	                headers: { "Content-Type": "application/json" },
+	                body: JSON.stringify({ search: "", accessToken: getToken() }),
+	            });
+	
+	            const data = await res.json();
+	            saveToken(data.accessToken);
+|3,0,2,0,50,0,1763390956,"import { useEffect, useState } from \"react\";","import { useNavigate } from \"react-router-dom\";","import Navbar from \"../components/Navbar\";","","interface Product {","    productID: string;","    name: string;","    price: number;","    stock_quantity?: number;","    stockQuantity?: number;","    description?: string;","    imageLocation?: string;","}","","const BASE_URL = \"http://knightmp.xyz\";","",>54
+|<"// Always convert DB file path to a public image URL","function getImageURL(path?: string): string {","    if (!path) return \"https://via.placeholder.com/150\";","","    const file = path.split(\"/\").pop()!;","    return `${BASE_URL}/images/${file}`;","}","","export default function Listings() {","    const navigate = useNavigate();","","    const [myProducts, setMyProducts] = useState<Product[]>([]);","    const [products, setProducts] = useState<Product[]>([]);",>51
+|<"    const [loading, setLoading] = useState(true);","","    const getToken = () => localStorage.getItem(\"accessToken\");","    const saveToken = (t?: string) => t && localStorage.setItem(\"accessToken\", t);","","    // Determine stock safely","    function getStock(p: Product): number {","        return p.stock_quantity ?? p.stockQuantity ?? 0;","    }","","    // Load ALL products","    async function loadProducts() {","        try {",>65
+|<"            const res = await fetch(\"/api/search_products\", {","                method: \"POST\",","                headers: { \"Content-Type\": \"application/json\" },","                body: JSON.stringify({ search: \"\", accessToken: getToken() }),","            });","","            const data = await res.json();","            saveToken(data.accessToken);"
+"3	CHAR	0
+	import { useEffect, useState } from "react";
+	import { useNavigate } from "react-router-dom";
+	import Navbar from "../components/Navbar";
+	
+	interface Product {
+	    productID: string;
+	    name: string;
+	    price: number;
+	    stock_quantity?: number;
+	    stockQuantity?: number;
+	    description?: string;
+	    imageLocation?: string;
+	}
+	
+	const BASE_URL = "http://knightmp.xyz";
+	
+	// Always convert DB file path to a valid public URL
+	function getImageURL(path?: string): string {
+	    if (!path) {
+	        console.log("getImageURL called with empty path");
+	        return "https://via.placeholder.com/150";
+	    }
+	    const file = path.split("/").pop()!;
+	    const finalURL = `${BASE_URL}/images/${file}`;
+	
+	    console.log("getImageURL:", { path, file, finalURL });
+	
+	    return finalURL;
+	}
+	
+	export default function Listings() {
+	    const navigate = useNavigate();
+	
+	    const [myProducts, setMyProducts] = useState<Product[]>([]);
+	    const [products, setProducts] = useState<Product[]>([]);
+	    const [loading, setLoading] = useState(true);
+	
+	    const getToken = () => localStorage.getItem("accessToken");
+	    const saveToken = (newToken?: string) => {
+	        if (newToken) localStorage.setItem("accessToken", newToken);
+	    };
+	
+	    async function loadProducts() {
+	        try {
+	            const res = await fetch("/api/search_products", {
+	                method: "POST",
+	                headers: { "Content-Type": "application/json" },
+	                body: JSON.stringify({ search: "", accessToken: getToken() }),
+	            });
+	
+|3,0,3,0,50,0,1763390627,"import { useEffect, useState } from \"react\";","import { useNavigate } from \"react-router-dom\";","import Navbar from \"../components/Navbar\";","","interface Product {","    productID: string;","    name: string;","    price: number;","    stock_quantity?: number;","    stockQuantity?: number;","    description?: string;","    imageLocation?: string;","}","","const BASE_URL = \"http://knightmp.xyz\";","",>54
+|<"// Always convert DB file path to a valid public URL","function getImageURL(path?: string): string {","    if (!path) {","        console.log(\"getImageURL called with empty path\");","        return \"https://via.placeholder.com/150\";","    }","    const file = path.split(\"/\").pop()!;","    const finalURL = `${BASE_URL}/images/${file}`;","","    console.log(\"getImageURL:\", { path, file, finalURL });","","    return finalURL;","}","","export default function Listings() {",>37
+|<"    const navigate = useNavigate();","","    const [myProducts, setMyProducts] = useState<Product[]>([]);","    const [products, setProducts] = useState<Product[]>([]);","    const [loading, setLoading] = useState(true);","","    const getToken = () => localStorage.getItem(\"accessToken\");","    const saveToken = (newToken?: string) => {","        if (newToken) localStorage.setItem(\"accessToken\", newToken);","    };","","    async function loadProducts() {","        try {",>65
+|<"            const res = await fetch(\"/api/search_products\", {","                method: \"POST\",","                headers: { \"Content-Type\": \"application/json\" },","                body: JSON.stringify({ search: \"\", accessToken: getToken() }),","            });",""
+"4	CHAR	0
+	import { useEffect, useState } from "react";
+	import { useNavigate } from "react-router-dom";
+	import Navbar from "../components/Navbar";
+	
+	interface Product {
+	    productID: string;
+	    name: string;
+	    price: number;
+	    stock_quantity?: number;
+	    stockQuantity?: number;
+	    description?: string;
+	    imageLocation?: string;
+	}
+	
+	const BASE_URL = "http://knightmp.xyz";
+	
+	// Always convert DB file path to a valid public URL
+	function getImageURL(path?: string): string {
+	    if (!path) {
+	        console.log("getImageURL called with empty path");
+	        return "https://via.placeholder.com/150";
+	    }
+	    const file = path.split("/").pop()!;
+	    const finalURL = `${BASE_URL}/images/${file}`;
+	
+	    console.log("getImageURL:", { path, file, finalURL });
+	
+	    return finalURL;
+	}
+	
+	export default function Listings() {
+	    const navigate = useNavigate();
+	
+	    const [myProducts, setMyProducts] = useState<Product[]>([]);
+	    const [products, setProducts] = useState<Product[]>([]);
+	    const [loading, setLoading] = useState(true);
+	
+	    const getToken = () => localStorage.getItem("accessToken");
+	    const saveToken = (newToken?: string) => {
+	        if (newToken) localStorage.setItem("accessToken", newToken);
+	    };
+	
+	    async function loadProducts() {
+	        try {
+	            const res = await fetch("/api/search_products", {
+	                method: "POST",
+	                headers: { "Content-Type": "application/json" },
+	                body: JSON.stringify({ search: "", accessToken: getToken() }),
+	            });
+	
+|3,0,4,0,50,0,1763390627,"import { useEffect, useState } from \"react\";","import { useNavigate } from \"react-router-dom\";","import Navbar from \"../components/Navbar\";","","interface Product {","    productID: string;","    name: string;","    price: number;","    stock_quantity?: number;","    stockQuantity?: number;","    description?: string;","    imageLocation?: string;","}","","const BASE_URL = \"http://knightmp.xyz\";","",>54
+|<"// Always convert DB file path to a valid public URL","function getImageURL(path?: string): string {","    if (!path) {","        console.log(\"getImageURL called with empty path\");","        return \"https://via.placeholder.com/150\";","    }","    const file = path.split(\"/\").pop()!;","    const finalURL = `${BASE_URL}/images/${file}`;","","    console.log(\"getImageURL:\", { path, file, finalURL });","","    return finalURL;","}","","export default function Listings() {",>37
+|<"    const navigate = useNavigate();","","    const [myProducts, setMyProducts] = useState<Product[]>([]);","    const [products, setProducts] = useState<Product[]>([]);","    const [loading, setLoading] = useState(true);","","    const getToken = () => localStorage.getItem(\"accessToken\");","    const saveToken = (newToken?: string) => {","        if (newToken) localStorage.setItem(\"accessToken\", newToken);","    };","","    async function loadProducts() {","        try {",>65
+|<"            const res = await fetch(\"/api/search_products\", {","                method: \"POST\",","                headers: { \"Content-Type\": \"application/json\" },","                body: JSON.stringify({ search: \"\", accessToken: getToken() }),","            });",""
+"5	CHAR	0
+	import React, { useEffect, useState } from "react";
+	import { useNavigate } from "react-router-dom";
+	import Navbar from "../components/Navbar";
+	
+	interface Order {
+	    orderID: string;
+	    status: string;
+	    dateCreated: string;
+	    shippingAddress?: string;
+	}
+	
+	interface OrderHistoryResponse {
+	    accessToken?: string;
+	    results?: Order[];
+	    error?: string;
+	}
+	
+	const Orders: React.FC = () => {
+	    const navigate = useNavigate();
+	
+	    const [orders, setOrders] = useState<Order[]>([]);
+	    const [loading, setLoading] = useState(true);
+	
+	    let accessToken = localStorage.getItem("accessToken");
+	
+	    if (!accessToken || accessToken === "undefined") {
+	        accessToken = null;
+	    }
+	
+	    useEffect(() => {
+	        if (!accessToken) {
+	            navigate("/");
+	            return;
+	        }
+	
+	        fetchOrders(accessToken);
+	        // eslint-disable-next-line
+	    }, []);
+	
+	    const fetchOrders = async (tokenToUse: string) => {
+	        setLoading(true);
+	
+	        const response = await fetch("/api/order_history", {
+	            method: "POST",
+	            headers: { "Content-Type": "application/json" },
+	            body: JSON.stringify({ accessToken: tokenToUse }),
+	        });
+	
+	        const text = await response.text();
+	        let data: OrderHistoryResponse = {};
+|3,0,5,0,50,0,1763390281,"import React, { useEffect, useState } from \"react\";","import { useNavigate } from \"react-router-dom\";","import Navbar from \"../components/Navbar\";","","interface Order {","    orderID: string;","    status: string;","    dateCreated: string;","    shippingAddress?: string;","}","","interface OrderHistoryResponse {","    accessToken?: string;","    results?: Order[];","    error?: string;","}","",>34
+|<"const Orders: React.FC = () => {","    const navigate = useNavigate();","","    const [orders, setOrders] = useState<Order[]>([]);","    const [loading, setLoading] = useState(true);","","    let accessToken = localStorage.getItem(\"accessToken\");","","    if (!accessToken || accessToken === \"undefined\") {","        accessToken = null;","    }","","    useEffect(() => {","        if (!accessToken) {","            navigate(\"/\");","            return;","        }","",>35
+|<"        fetchOrders(accessToken);","        // eslint-disable-next-line","    }, []);","","    const fetchOrders = async (tokenToUse: string) => {","        setLoading(true);","","        const response = await fetch(\"/api/order_history\", {","            method: \"POST\",","            headers: { \"Content-Type\": \"application/json\" },","            body: JSON.stringify({ accessToken: tokenToUse }),","        });","","        const text = await response.text();",>46
+|<"        let data: OrderHistoryResponse = {};"
+"6	CHAR	0
+	import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+	import Login from "./pages/Login";
+	import Home from "./pages/Home";
+	import Register from "./pages/Register";
+	import Sell from "./pages/Sell";
+	import Listing from "./pages/Listing";
+	import About from "./pages/About";
+	import Profile from "./pages/Profile.tsx";
+	import Cart from "./pages/Cart.tsx";
+	import ProductDetails from "./pages/ProductDetails";
+	import EditProduct from "./pages/EditProduct";
+	import ForgotPassword from "./pages/ForgotPassword.tsx";
+	function App() {
+	    return (
+	        <Router>
+	            <Routes>
+	                <Route path="/" element={<Login />} />
+	                <Route path="/register" element={<Register />} />
+	                <Route path="/home" element={<Home />} />
+	                <Route path="/sell" element={<Sell />} />
+	                <Route path="/listing" element={<Listing/>} />
+	                <Route path="/profile" element={<Profile />} />
+	                <Route path="/cart" element={<Cart />} />
+	                <Route path="/product/:id" element={<ProductDetails />} />
+	                <Route path="/about" element={<About />} />
+	                <Route path="/forgot-password" element={<ForgotPassword />} />
+	                <Route path="/edit-product/:productID" element={<EditProduct />} />
+	            </Routes>
+	        </Router>
+	    );
+	}
+	
+	export default App;
+	
+|3,0,6,0,34,0,1763390110,"import { BrowserRouter as Router, Routes, Route } from \"react-router-dom\";","import Login from \"./pages/Login\";","import Home from \"./pages/Home\";","import Register from \"./pages/Register\";","import Sell from \"./pages/Sell\";","import Listing from \"./pages/Listing\";","import About from \"./pages/About\";","import Profile from \"./pages/Profile.tsx\";","import Cart from \"./pages/Cart.tsx\";",>56
+|<"import ProductDetails from \"./pages/ProductDetails\";","import EditProduct from \"./pages/EditProduct\";","import ForgotPassword from \"./pages/ForgotPassword.tsx\";","function App() {","    return (","        <Router>","            <Routes>","                <Route path=\"/\" element={<Login />} />","                <Route path=\"/register\" element={<Register />} />","                <Route path=\"/home\" element={<Home />} />",>61
+|<"                <Route path=\"/sell\" element={<Sell />} />","                <Route path=\"/listing\" element={<Listing/>} />","                <Route path=\"/profile\" element={<Profile />} />","                <Route path=\"/cart\" element={<Cart />} />","                <Route path=\"/product/:id\" element={<ProductDetails />} />","                <Route path=\"/about\" element={<About />} />","                <Route path=\"/forgot-password\" element={<ForgotPassword />} />",>87
+|<"                <Route path=\"/edit-product/:productID\" element={<EditProduct />} />","            </Routes>","        </Router>","    );","}","","export default App;",""
+"7	CHAR	0
+	import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+	import Login from "./pages/Login";
+	import Home from "./pages/Home";
+	import Register from "./pages/Register";
+	import Sell from "./pages/Sell";
+	import Listing from "./pages/Listing";
+	import About from "./pages/About";
+	import Profile from "./pages/Profile.tsx";
+	import Cart from "./pages/Cart.tsx";
+	import ProductDetails from "./pages/ProductDetails";
+	import EditProduct from "./pages/EditProduct";
+	import ForgotPassword from "./pages/ForgotPassword.tsx";
+	function App() {
+	    return (
+	        <Router>
+	            <Routes>
+	                <Route path="/" element={<Login />} />
+	                <Route path="/register" element={<Register />} />
+	                <Route path="/home" element={<Home />} />
+	                <Route path="/sell" element={<Sell />} />
+	                <Route path="/listing" element={<Listing/>} />
+	                <Route path="/profile" element={<Profile />} />
+	                <Route path="/cart" element={<Cart />} />
+	                <Route path="/product/:id" element={<ProductDetails />} />
+	                <Route path="/about" element={<About />} />
+	                <Route path="/forgot-password" element={<ForgotPassword />} />
+	                <
+|3,0,7,0,27,0,1763390099,"import { BrowserRouter as Router, Routes, Route } from \"react-router-dom\";","import Login from \"./pages/Login\";","import Home from \"./pages/Home\";","import Register from \"./pages/Register\";","import Sell from \"./pages/Sell\";","import Listing from \"./pages/Listing\";","import About from \"./pages/About\";","import Profile from \"./pages/Profile.tsx\";","import Cart from \"./pages/Cart.tsx\";",>56
+|<"import ProductDetails from \"./pages/ProductDetails\";","import EditProduct from \"./pages/EditProduct\";","import ForgotPassword from \"./pages/ForgotPassword.tsx\";","function App() {","    return (","        <Router>","            <Routes>","                <Route path=\"/\" element={<Login />} />","                <Route path=\"/register\" element={<Register />} />","                <Route path=\"/home\" element={<Home />} />",>61
+|<"                <Route path=\"/sell\" element={<Sell />} />","                <Route path=\"/listing\" element={<Listing/>} />","                <Route path=\"/profile\" element={<Profile />} />","                <Route path=\"/cart\" element={<Cart />} />","                <Route path=\"/product/:id\" element={<ProductDetails />} />","                <Route path=\"/about\" element={<About />} />","                <Route path=\"/forgot-password\" element={<ForgotPassword />} />",>19
+|<"                <"
+"8	CHAR	0
+	import React, { useEffect, useState } from "react";
+	import Navbar from "../components/Navbar";
+	import { jwtDecode } from "jwt-decode";
+	
+	interface TokenPayload {
+	    username: string;
+	    email: string;
+	    firstName: string;
+	    lastName: string;
+	    dateCreated: string;
+	    userID: string;
+	    accessToken?: string;
+	}
+	
+	const Profile: React.FC = () => {
+	    const [user, setUser] = useState<TokenPayload | null>(null);
+	    const [loading, setLoading] = useState(true);
+	    const [error, setError] = useState("");
+	    const [success, setSuccess] = useState("");
+	
+	    const [form, setForm] = useState({
+	        username: "",
+	        email: "",
+	        firstName: "",
+	        lastName: ""
+	    });
+	
+	    useEffect(() => {
+	        const token = localStorage.getItem("accessToken"); // FIXED
+	
+	        if (!token) {
+	            setError("User not logged in");
+	            setLoading(false);
+	            return;
+	        }
+	
+	        try {
+	            const decoded = jwtDecode<TokenPayload>(token);
+	            setUser(decoded);
+	
+	            setForm({
+	                username: decoded.username,
+	                email: decoded.email,
+	                firstName: decoded.firstName,
+	                lastName: decoded.lastName
+	            });
+	        } catch (err) {
+	            setError("Invalid or expired token");
+	        } finally {
+	            setLoading(false);
+|3,0,8,0,50,0,1763389565,"import React, { useEffect, useState } from \"react\";","import Navbar from \"../components/Navbar\";","import { jwtDecode } from \"jwt-decode\";","","interface TokenPayload {","    username: string;","    email: string;","    firstName: string;","    lastName: string;","    dateCreated: string;","    userID: string;","    accessToken?: string;","}","","const Profile: React.FC = () => {",>66
+|<"    const [user, setUser] = useState<TokenPayload | null>(null);","    const [loading, setLoading] = useState(true);","    const [error, setError] = useState(\"\");","    const [success, setSuccess] = useState(\"\");","","    const [form, setForm] = useState({","        username: \"\",","        email: \"\",","        firstName: \"\",","        lastName: \"\"","    });","","    useEffect(() => {","        const token = localStorage.getItem(\"accessToken\"); // FIXED","",>23
+|<"        if (!token) {","            setError(\"User not logged in\");","            setLoading(false);","            return;","        }","","        try {","            const decoded = jwtDecode<TokenPayload>(token);","            setUser(decoded);","","            setForm({","                username: decoded.username,","                email: decoded.email,","                firstName: decoded.firstName,","                lastName: decoded.lastName","            });",>25
+|<"        } catch (err) {","            setError(\"Invalid or expired token\");","        } finally {","            setLoading(false);"
+"9	CHAR	0
+	import React, { useEffect, useState } from "react";
+	import Navbar from "../components/Navbar";
+	import { jwtDecode } from "jwt-decode";
+	
+	interface TokenPayload {
+	    username: string;
+	    email: string;
+	    firstName: string;
+	    lastName: string;
+	    dateCreated: string;
+	    userID: string;
+	    accessToken?: string;
+	}
+	
+	const Profile: React.FC = () => {
+	    const [user, setUser] = useState<TokenPayload | null>(null);
+	    const [loading, setLoading] = useState(true);
+	    const [error, setError] = useState("");
+	    const [success, setSuccess] = useState("");
+	
+	    const [form, setForm] = useState({
+	        username: "",
+	        email: "",
+	        firstName: "",
+	        lastName: ""
+	    });
+	
+	    useEffect(() => {
+	        const token = localStorage.getItem("accessToken"); // FIXED
+	
+	        if (!token) {
+	            setError("User not logged in");
+	            setLoading(false);
+	            return;
+	        }
+	
+	        try {
+	            const decoded = jwtDecode<TokenPayload>(token);
+	            setUser(decoded);
+	
+	            setForm({
+	                username: decoded.username,
+	                email: decoded.email,
+	                firstName: decoded.firstName,
+	                lastName: decoded.lastName
+	            });
+	        } catch (err) {
+	            setError("Invalid or expired token");
+	        } finally {
+	            setLoading(false);
+|3,0,9,0,50,0,1763389565,"import React, { useEffect, useState } from \"react\";","import Navbar from \"../components/Navbar\";","import { jwtDecode } from \"jwt-decode\";","","interface TokenPayload {","    username: string;","    email: string;","    firstName: string;","    lastName: string;","    dateCreated: string;","    userID: string;","    accessToken?: string;","}","","const Profile: React.FC = () => {",>66
+|<"    const [user, setUser] = useState<TokenPayload | null>(null);","    const [loading, setLoading] = useState(true);","    const [error, setError] = useState(\"\");","    const [success, setSuccess] = useState(\"\");","","    const [form, setForm] = useState({","        username: \"\",","        email: \"\",","        firstName: \"\",","        lastName: \"\"","    });","","    useEffect(() => {","        const token = localStorage.getItem(\"accessToken\"); // FIXED","",>23
+|<"        if (!token) {","            setError(\"User not logged in\");","            setLoading(false);","            return;","        }","","        try {","            const decoded = jwtDecode<TokenPayload>(token);","            setUser(decoded);","","            setForm({","                username: decoded.username,","                email: decoded.email,","                firstName: decoded.firstName,","                lastName: decoded.lastName","            });",>25
+|<"        } catch (err) {","            setError(\"Invalid or expired token\");","        } finally {","            setLoading(false);"
+"-	CHAR	0
+	}
+|3,0,36,0,1,0,1763333134,"}"
 
 # File marks:
-'0  3  0  ~/database/testProduct.js
-|4,48,3,0,1761247763,"~/database/testProduct.js"
-'1  10  22  ~/database/models/Product.js
-|4,49,10,22,1761247712,"~/database/models/Product.js"
-'2  23  0  ~/database/models/Product.js
-|4,50,23,0,1761247679,"~/database/models/Product.js"
-'3  21  0  ~/database/models/Product.js
-|4,51,21,0,1761247679,"~/database/models/Product.js"
-'4  18  0  ~/database/testUser.js
-|4,52,18,0,1761247660,"~/database/testUser.js"
-'5  19  29  ~/database/testUser.js
-|4,53,19,29,1761247128,"~/database/testUser.js"
-'6  19  29  ~/database/testUser.js
-|4,54,19,29,1761247128,"~/database/testUser.js"
-'7  23  19  ~/database/testUser.js
-|4,55,23,19,1761247098,"~/database/testUser.js"
-'8  23  19  ~/database/testUser.js
-|4,56,23,19,1761247098,"~/database/testUser.js"
-'9  23  19  ~/database/testUser.js
-|4,57,23,19,1761247098,"~/database/testUser.js"
+'0  186  0  ~/frontend/src/pages/Orders.tsx
+|4,48,186,0,1763391011,"~/frontend/src/pages/Orders.tsx"
+'1  204  0  ~/frontend/src/pages/Listing.tsx
+|4,49,204,0,1763390959,"~/frontend/src/pages/Listing.tsx"
+'2  396  0  ~/frontend/src/pages/Cart.tsx
+|4,50,396,0,1763390911,"~/frontend/src/pages/Cart.tsx"
+'3  1  0  ~/frontend/src/pages/Listing.tsx
+|4,51,1,0,1763390630,"~/frontend/src/pages/Listing.tsx"
+'4  205  0  ~/frontend/src/pages/Listing.tsx
+|4,52,205,0,1763390630,"~/frontend/src/pages/Listing.tsx"
+'5  1  0  ~/frontend/src/pages/Orders.tsx
+|4,53,1,0,1763390284,"~/frontend/src/pages/Orders.tsx"
+'6  186  0  ~/frontend/src/pages/Orders.tsx
+|4,54,186,0,1763390284,"~/frontend/src/pages/Orders.tsx"
+'7  35  18  ~/frontend/src/App.tsx
+|4,55,35,18,1763390114,"~/frontend/src/App.tsx"
+'8  2  18  ~/frontend/src/App.tsx
+|4,56,2,18,1763390105,"~/frontend/src/App.tsx"
+'9  35  18  ~/frontend/src/App.tsx
+|4,57,35,18,1763390105,"~/frontend/src/App.tsx"
 
 # Jumplist (newest first):
--'  3  0  ~/database/testProduct.js
-|4,39,3,0,1761247763,"~/database/testProduct.js"
--'  1  0  ~/database/testProduct.js
-|4,39,1,0,1761247721,"~/database/testProduct.js"
--'  10  22  ~/database/models/Product.js
-|4,39,10,22,1761247712,"~/database/models/Product.js"
--'  10  22  ~/database/models/Product.js
-|4,39,10,22,1761247712,"~/database/models/Product.js"
--'  1  0  ~/database/models/Product.js
-|4,39,1,0,1761247680,"~/database/models/Product.js"
--'  1  0  ~/database/models/Product.js
-|4,39,1,0,1761247680,"~/database/models/Product.js"
--'  23  0  ~/database/models/Product.js
-|4,39,23,0,1761247679,"~/database/models/Product.js"
--'  21  0  ~/database/models/Product.js
-|4,39,21,0,1761247679,"~/database/models/Product.js"
--'  23  0  ~/database/models/Product.js
-|4,39,23,0,1761247679,"~/database/models/Product.js"
--'  21  0  ~/database/models/Product.js
-|4,39,21,0,1761247679,"~/database/models/Product.js"
--'  1  0  ~/database/models/Product.js
-|4,39,1,0,1761247667,"~/database/models/Product.js"
--'  1  0  ~/database/models/Product.js
-|4,39,1,0,1761247667,"~/database/models/Product.js"
--'  18  0  ~/database/testUser.js
-|4,39,18,0,1761247660,"~/database/testUser.js"
--'  18  0  ~/database/testUser.js
-|4,39,18,0,1761247660,"~/database/testUser.js"
--'  18  0  ~/database/testUser.js
-|4,39,18,0,1761247660,"~/database/testUser.js"
--'  18  0  ~/database/testUser.js
-|4,39,18,0,1761247660,"~/database/testUser.js"
--'  18  0  ~/database/testUser.js
-|4,39,18,0,1761247660,"~/database/testUser.js"
--'  18  0  ~/database/testUser.js
-|4,39,18,0,1761247660,"~/database/testUser.js"
--'  18  0  ~/database/testUser.js
-|4,39,18,0,1761247660,"~/database/testUser.js"
--'  18  0  ~/database/testUser.js
-|4,39,18,0,1761247660,"~/database/testUser.js"
--'  19  29  ~/database/testUser.js
-|4,39,19,29,1761247148,"~/database/testUser.js"
--'  19  29  ~/database/testUser.js
-|4,39,19,29,1761247148,"~/database/testUser.js"
--'  19  29  ~/database/testUser.js
-|4,39,19,29,1761247148,"~/database/testUser.js"
--'  19  29  ~/database/testUser.js
-|4,39,19,29,1761247148,"~/database/testUser.js"
--'  19  29  ~/database/testUser.js
-|4,39,19,29,1761247148,"~/database/testUser.js"
--'  19  29  ~/database/testUser.js
-|4,39,19,29,1761247148,"~/database/testUser.js"
--'  19  29  ~/database/testUser.js
-|4,39,19,29,1761247148,"~/database/testUser.js"
--'  19  29  ~/database/testUser.js
-|4,39,19,29,1761247148,"~/database/testUser.js"
--'  19  29  ~/database/testUser.js
-|4,39,19,29,1761247128,"~/database/testUser.js"
--'  19  29  ~/database/testUser.js
-|4,39,19,29,1761247128,"~/database/testUser.js"
--'  19  29  ~/database/testUser.js
-|4,39,19,29,1761247128,"~/database/testUser.js"
--'  19  29  ~/database/testUser.js
-|4,39,19,29,1761247128,"~/database/testUser.js"
--'  19  29  ~/database/testUser.js
-|4,39,19,29,1761247128,"~/database/testUser.js"
--'  19  29  ~/database/testUser.js
-|4,39,19,29,1761247128,"~/database/testUser.js"
--'  19  29  ~/database/testUser.js
-|4,39,19,29,1761247128,"~/database/testUser.js"
--'  19  29  ~/database/testUser.js
-|4,39,19,29,1761247128,"~/database/testUser.js"
--'  23  19  ~/database/testUser.js
-|4,39,23,19,1761247107,"~/database/testUser.js"
--'  23  19  ~/database/testUser.js
-|4,39,23,19,1761247107,"~/database/testUser.js"
--'  23  19  ~/database/testUser.js
-|4,39,23,19,1761247107,"~/database/testUser.js"
--'  23  19  ~/database/testUser.js
-|4,39,23,19,1761247107,"~/database/testUser.js"
--'  23  19  ~/database/testUser.js
-|4,39,23,19,1761247107,"~/database/testUser.js"
--'  23  19  ~/database/testUser.js
-|4,39,23,19,1761247107,"~/database/testUser.js"
--'  23  19  ~/database/testUser.js
-|4,39,23,19,1761247107,"~/database/testUser.js"
--'  23  19  ~/database/testUser.js
-|4,39,23,19,1761247107,"~/database/testUser.js"
--'  23  19  ~/database/testUser.js
-|4,39,23,19,1761247107,"~/database/testUser.js"
--'  23  19  ~/database/testUser.js
-|4,39,23,19,1761247107,"~/database/testUser.js"
--'  23  19  ~/database/testUser.js
-|4,39,23,19,1761247107,"~/database/testUser.js"
--'  23  19  ~/database/testUser.js
-|4,39,23,19,1761247107,"~/database/testUser.js"
--'  23  19  ~/database/testUser.js
-|4,39,23,19,1761247107,"~/database/testUser.js"
--'  23  19  ~/database/testUser.js
-|4,39,23,19,1761247107,"~/database/testUser.js"
--'  23  19  ~/database/testUser.js
-|4,39,23,19,1761247107,"~/database/testUser.js"
--'  23  19  ~/database/testUser.js
-|4,39,23,19,1761247107,"~/database/testUser.js"
--'  23  19  ~/database/testUser.js
-|4,39,23,19,1761247098,"~/database/testUser.js"
--'  23  19  ~/database/testUser.js
-|4,39,23,19,1761247098,"~/database/testUser.js"
--'  23  19  ~/database/testUser.js
-|4,39,23,19,1761247098,"~/database/testUser.js"
--'  23  19  ~/database/testUser.js
-|4,39,23,19,1761247098,"~/database/testUser.js"
--'  23  19  ~/database/testUser.js
-|4,39,23,19,1761247098,"~/database/testUser.js"
--'  23  19  ~/database/testUser.js
-|4,39,23,19,1761247098,"~/database/testUser.js"
--'  23  19  ~/database/testUser.js
-|4,39,23,19,1761247098,"~/database/testUser.js"
--'  23  19  ~/database/testUser.js
-|4,39,23,19,1761247098,"~/database/testUser.js"
--'  1  0  ~/database/testUser.js
-|4,39,1,0,1761247024,"~/database/testUser.js"
--'  1  0  ~/database/testUser.js
-|4,39,1,0,1761247024,"~/database/testUser.js"
--'  1  0  ~/database/testUser.js
-|4,39,1,0,1761247024,"~/database/testUser.js"
--'  1  0  ~/database/testUser.js
-|4,39,1,0,1761247024,"~/database/testUser.js"
--'  1  0  ~/database/testUser.js
-|4,39,1,0,1761247024,"~/database/testUser.js"
--'  1  0  ~/database/testUser.js
-|4,39,1,0,1761247024,"~/database/testUser.js"
--'  1  0  ~/database/testUser.js
-|4,39,1,0,1761247024,"~/database/testUser.js"
--'  1  0  ~/database/testUser.js
-|4,39,1,0,1761247024,"~/database/testUser.js"
--'  1  0  ~/database/testUser.js
-|4,39,1,0,1761247024,"~/database/testUser.js"
--'  1  0  ~/database/testUser.js
-|4,39,1,0,1761247024,"~/database/testUser.js"
--'  1  0  ~/database/testUser.js
-|4,39,1,0,1761247024,"~/database/testUser.js"
--'  1  0  ~/database/testUser.js
-|4,39,1,0,1761247024,"~/database/testUser.js"
--'  1  0  ~/database/testUser.js
-|4,39,1,0,1761247024,"~/database/testUser.js"
--'  1  0  ~/database/testUser.js
-|4,39,1,0,1761247024,"~/database/testUser.js"
--'  1  0  ~/database/testUser.js
-|4,39,1,0,1761247024,"~/database/testUser.js"
--'  1  0  ~/database/testUser.js
-|4,39,1,0,1761247024,"~/database/testUser.js"
--'  1  0  ~/database/testUser.js
-|4,39,1,0,1761247024,"~/database/testUser.js"
--'  1  0  ~/database/testUser.js
-|4,39,1,0,1761247024,"~/database/testUser.js"
--'  1  0  ~/database/testUser.js
-|4,39,1,0,1761247024,"~/database/testUser.js"
--'  1  0  ~/database/testUser.js
-|4,39,1,0,1761247024,"~/database/testUser.js"
--'  1  0  ~/database/testUser.js
-|4,39,1,0,1761247024,"~/database/testUser.js"
--'  1  0  ~/database/testUser.js
-|4,39,1,0,1761247024,"~/database/testUser.js"
--'  1  0  ~/database/testUser.js
-|4,39,1,0,1761247024,"~/database/testUser.js"
--'  1  0  ~/database/testUser.js
-|4,39,1,0,1761247024,"~/database/testUser.js"
--'  49  0  ~/database/testUser.js
-|4,39,49,0,1761247023,"~/database/testUser.js"
--'  47  0  ~/database/testUser.js
-|4,39,47,0,1761247023,"~/database/testUser.js"
--'  49  0  ~/database/testUser.js
-|4,39,49,0,1761247023,"~/database/testUser.js"
--'  47  0  ~/database/testUser.js
-|4,39,47,0,1761247023,"~/database/testUser.js"
--'  49  0  ~/database/testUser.js
-|4,39,49,0,1761247023,"~/database/testUser.js"
--'  47  0  ~/database/testUser.js
-|4,39,47,0,1761247023,"~/database/testUser.js"
--'  49  0  ~/database/testUser.js
-|4,39,49,0,1761247023,"~/database/testUser.js"
--'  47  0  ~/database/testUser.js
-|4,39,47,0,1761247023,"~/database/testUser.js"
--'  49  0  ~/database/testUser.js
-|4,39,49,0,1761247023,"~/database/testUser.js"
--'  47  0  ~/database/testUser.js
-|4,39,47,0,1761247023,"~/database/testUser.js"
--'  49  0  ~/database/testUser.js
-|4,39,49,0,1761247023,"~/database/testUser.js"
--'  47  0  ~/database/testUser.js
-|4,39,47,0,1761247023,"~/database/testUser.js"
--'  49  0  ~/database/testUser.js
-|4,39,49,0,1761247023,"~/database/testUser.js"
--'  47  0  ~/database/testUser.js
-|4,39,47,0,1761247023,"~/database/testUser.js"
--'  49  0  ~/database/testUser.js
-|4,39,49,0,1761247023,"~/database/testUser.js"
--'  47  0  ~/database/testUser.js
-|4,39,47,0,1761247023,"~/database/testUser.js"
+-'  186  0  ~/frontend/src/pages/Orders.tsx
+|4,39,186,0,1763391011,"~/frontend/src/pages/Orders.tsx"
+-'  1  0  ~/frontend/src/pages/Orders.tsx
+|4,39,1,0,1763391002,"~/frontend/src/pages/Orders.tsx"
+-'  204  0  ~/frontend/src/pages/Listing.tsx
+|4,39,204,0,1763390959,"~/frontend/src/pages/Listing.tsx"
+-'  204  0  ~/frontend/src/pages/Listing.tsx
+|4,39,204,0,1763390959,"~/frontend/src/pages/Listing.tsx"
+-'  1  0  ~/frontend/src/pages/Listing.tsx
+|4,39,1,0,1763390956,"~/frontend/src/pages/Listing.tsx"
+-'  1  0  ~/frontend/src/pages/Listing.tsx
+|4,39,1,0,1763390956,"~/frontend/src/pages/Listing.tsx"
+-'  396  0  ~/frontend/src/pages/Cart.tsx
+|4,39,396,0,1763390911,"~/frontend/src/pages/Cart.tsx"
+-'  396  0  ~/frontend/src/pages/Cart.tsx
+|4,39,396,0,1763390911,"~/frontend/src/pages/Cart.tsx"
+-'  396  0  ~/frontend/src/pages/Cart.tsx
+|4,39,396,0,1763390911,"~/frontend/src/pages/Cart.tsx"
+-'  396  0  ~/frontend/src/pages/Cart.tsx
+|4,39,396,0,1763390911,"~/frontend/src/pages/Cart.tsx"
+-'  1  0  ~/frontend/src/pages/Cart.tsx
+|4,39,1,0,1763390904,"~/frontend/src/pages/Cart.tsx"
+-'  1  0  ~/frontend/src/pages/Cart.tsx
+|4,39,1,0,1763390904,"~/frontend/src/pages/Cart.tsx"
+-'  1  0  ~/frontend/src/pages/Cart.tsx
+|4,39,1,0,1763390904,"~/frontend/src/pages/Cart.tsx"
+-'  1  0  ~/frontend/src/pages/Cart.tsx
+|4,39,1,0,1763390904,"~/frontend/src/pages/Cart.tsx"
+-'  205  0  ~/frontend/src/pages/Listing.tsx
+|4,39,205,0,1763390630,"~/frontend/src/pages/Listing.tsx"
+-'  205  0  ~/frontend/src/pages/Listing.tsx
+|4,39,205,0,1763390630,"~/frontend/src/pages/Listing.tsx"
+-'  205  0  ~/frontend/src/pages/Listing.tsx
+|4,39,205,0,1763390630,"~/frontend/src/pages/Listing.tsx"
+-'  205  0  ~/frontend/src/pages/Listing.tsx
+|4,39,205,0,1763390630,"~/frontend/src/pages/Listing.tsx"
+-'  1  0  ~/frontend/src/pages/Listing.tsx
+|4,39,1,0,1763390627,"~/frontend/src/pages/Listing.tsx"
+-'  1  0  ~/frontend/src/pages/Listing.tsx
+|4,39,1,0,1763390627,"~/frontend/src/pages/Listing.tsx"
+-'  1  0  ~/frontend/src/pages/Listing.tsx
+|4,39,1,0,1763390627,"~/frontend/src/pages/Listing.tsx"
+-'  1  0  ~/frontend/src/pages/Listing.tsx
+|4,39,1,0,1763390627,"~/frontend/src/pages/Listing.tsx"
+-'  186  0  ~/frontend/src/pages/Orders.tsx
+|4,39,186,0,1763390284,"~/frontend/src/pages/Orders.tsx"
+-'  186  0  ~/frontend/src/pages/Orders.tsx
+|4,39,186,0,1763390284,"~/frontend/src/pages/Orders.tsx"
+-'  186  0  ~/frontend/src/pages/Orders.tsx
+|4,39,186,0,1763390284,"~/frontend/src/pages/Orders.tsx"
+-'  186  0  ~/frontend/src/pages/Orders.tsx
+|4,39,186,0,1763390284,"~/frontend/src/pages/Orders.tsx"
+-'  186  0  ~/frontend/src/pages/Orders.tsx
+|4,39,186,0,1763390284,"~/frontend/src/pages/Orders.tsx"
+-'  186  0  ~/frontend/src/pages/Orders.tsx
+|4,39,186,0,1763390284,"~/frontend/src/pages/Orders.tsx"
+-'  186  0  ~/frontend/src/pages/Orders.tsx
+|4,39,186,0,1763390284,"~/frontend/src/pages/Orders.tsx"
+-'  186  0  ~/frontend/src/pages/Orders.tsx
+|4,39,186,0,1763390284,"~/frontend/src/pages/Orders.tsx"
+-'  1  0  ~/frontend/src/pages/Orders.tsx
+|4,39,1,0,1763390280,"~/frontend/src/pages/Orders.tsx"
+-'  1  0  ~/frontend/src/pages/Orders.tsx
+|4,39,1,0,1763390280,"~/frontend/src/pages/Orders.tsx"
+-'  1  0  ~/frontend/src/pages/Orders.tsx
+|4,39,1,0,1763390280,"~/frontend/src/pages/Orders.tsx"
+-'  1  0  ~/frontend/src/pages/Orders.tsx
+|4,39,1,0,1763390280,"~/frontend/src/pages/Orders.tsx"
+-'  1  0  ~/frontend/src/pages/Orders.tsx
+|4,39,1,0,1763390280,"~/frontend/src/pages/Orders.tsx"
+-'  1  0  ~/frontend/src/pages/Orders.tsx
+|4,39,1,0,1763390280,"~/frontend/src/pages/Orders.tsx"
+-'  1  0  ~/frontend/src/pages/Orders.tsx
+|4,39,1,0,1763390280,"~/frontend/src/pages/Orders.tsx"
+-'  1  0  ~/frontend/src/pages/Orders.tsx
+|4,39,1,0,1763390280,"~/frontend/src/pages/Orders.tsx"
+-'  35  18  ~/frontend/src/App.tsx
+|4,39,35,18,1763390114,"~/frontend/src/App.tsx"
+-'  35  18  ~/frontend/src/App.tsx
+|4,39,35,18,1763390114,"~/frontend/src/App.tsx"
+-'  35  18  ~/frontend/src/App.tsx
+|4,39,35,18,1763390114,"~/frontend/src/App.tsx"
+-'  35  18  ~/frontend/src/App.tsx
+|4,39,35,18,1763390114,"~/frontend/src/App.tsx"
+-'  35  18  ~/frontend/src/App.tsx
+|4,39,35,18,1763390114,"~/frontend/src/App.tsx"
+-'  35  18  ~/frontend/src/App.tsx
+|4,39,35,18,1763390114,"~/frontend/src/App.tsx"
+-'  35  18  ~/frontend/src/App.tsx
+|4,39,35,18,1763390114,"~/frontend/src/App.tsx"
+-'  35  18  ~/frontend/src/App.tsx
+|4,39,35,18,1763390114,"~/frontend/src/App.tsx"
+-'  35  18  ~/frontend/src/App.tsx
+|4,39,35,18,1763390114,"~/frontend/src/App.tsx"
+-'  35  18  ~/frontend/src/App.tsx
+|4,39,35,18,1763390114,"~/frontend/src/App.tsx"
+-'  35  18  ~/frontend/src/App.tsx
+|4,39,35,18,1763390114,"~/frontend/src/App.tsx"
+-'  35  18  ~/frontend/src/App.tsx
+|4,39,35,18,1763390114,"~/frontend/src/App.tsx"
+-'  35  18  ~/frontend/src/App.tsx
+|4,39,35,18,1763390114,"~/frontend/src/App.tsx"
+-'  35  18  ~/frontend/src/App.tsx
+|4,39,35,18,1763390114,"~/frontend/src/App.tsx"
+-'  35  18  ~/frontend/src/App.tsx
+|4,39,35,18,1763390114,"~/frontend/src/App.tsx"
+-'  35  18  ~/frontend/src/App.tsx
+|4,39,35,18,1763390114,"~/frontend/src/App.tsx"
+-'  35  18  ~/frontend/src/App.tsx
+|4,39,35,18,1763390114,"~/frontend/src/App.tsx"
+-'  35  18  ~/frontend/src/App.tsx
+|4,39,35,18,1763390114,"~/frontend/src/App.tsx"
+-'  35  18  ~/frontend/src/App.tsx
+|4,39,35,18,1763390114,"~/frontend/src/App.tsx"
+-'  35  18  ~/frontend/src/App.tsx
+|4,39,35,18,1763390114,"~/frontend/src/App.tsx"
+-'  35  18  ~/frontend/src/App.tsx
+|4,39,35,18,1763390114,"~/frontend/src/App.tsx"
+-'  35  18  ~/frontend/src/App.tsx
+|4,39,35,18,1763390114,"~/frontend/src/App.tsx"
+-'  35  18  ~/frontend/src/App.tsx
+|4,39,35,18,1763390114,"~/frontend/src/App.tsx"
+-'  35  18  ~/frontend/src/App.tsx
+|4,39,35,18,1763390114,"~/frontend/src/App.tsx"
+-'  35  18  ~/frontend/src/App.tsx
+|4,39,35,18,1763390114,"~/frontend/src/App.tsx"
+-'  35  18  ~/frontend/src/App.tsx
+|4,39,35,18,1763390114,"~/frontend/src/App.tsx"
+-'  35  18  ~/frontend/src/App.tsx
+|4,39,35,18,1763390114,"~/frontend/src/App.tsx"
+-'  35  18  ~/frontend/src/App.tsx
+|4,39,35,18,1763390114,"~/frontend/src/App.tsx"
+-'  35  18  ~/frontend/src/App.tsx
+|4,39,35,18,1763390114,"~/frontend/src/App.tsx"
+-'  35  18  ~/frontend/src/App.tsx
+|4,39,35,18,1763390114,"~/frontend/src/App.tsx"
+-'  35  18  ~/frontend/src/App.tsx
+|4,39,35,18,1763390114,"~/frontend/src/App.tsx"
+-'  35  18  ~/frontend/src/App.tsx
+|4,39,35,18,1763390114,"~/frontend/src/App.tsx"
+-'  1  0  ~/frontend/src/App.tsx
+|4,39,1,0,1763390109,"~/frontend/src/App.tsx"
+-'  1  0  ~/frontend/src/App.tsx
+|4,39,1,0,1763390109,"~/frontend/src/App.tsx"
+-'  1  0  ~/frontend/src/App.tsx
+|4,39,1,0,1763390109,"~/frontend/src/App.tsx"
+-'  1  0  ~/frontend/src/App.tsx
+|4,39,1,0,1763390109,"~/frontend/src/App.tsx"
+-'  1  0  ~/frontend/src/App.tsx
+|4,39,1,0,1763390109,"~/frontend/src/App.tsx"
+-'  1  0  ~/frontend/src/App.tsx
+|4,39,1,0,1763390109,"~/frontend/src/App.tsx"
+-'  1  0  ~/frontend/src/App.tsx
+|4,39,1,0,1763390109,"~/frontend/src/App.tsx"
+-'  1  0  ~/frontend/src/App.tsx
+|4,39,1,0,1763390109,"~/frontend/src/App.tsx"
+-'  1  0  ~/frontend/src/App.tsx
+|4,39,1,0,1763390109,"~/frontend/src/App.tsx"
+-'  1  0  ~/frontend/src/App.tsx
+|4,39,1,0,1763390109,"~/frontend/src/App.tsx"
+-'  1  0  ~/frontend/src/App.tsx
+|4,39,1,0,1763390109,"~/frontend/src/App.tsx"
+-'  1  0  ~/frontend/src/App.tsx
+|4,39,1,0,1763390109,"~/frontend/src/App.tsx"
+-'  1  0  ~/frontend/src/App.tsx
+|4,39,1,0,1763390109,"~/frontend/src/App.tsx"
+-'  1  0  ~/frontend/src/App.tsx
+|4,39,1,0,1763390109,"~/frontend/src/App.tsx"
+-'  1  0  ~/frontend/src/App.tsx
+|4,39,1,0,1763390109,"~/frontend/src/App.tsx"
+-'  1  0  ~/frontend/src/App.tsx
+|4,39,1,0,1763390109,"~/frontend/src/App.tsx"
+-'  1  0  ~/frontend/src/App.tsx
+|4,39,1,0,1763390109,"~/frontend/src/App.tsx"
+-'  1  0  ~/frontend/src/App.tsx
+|4,39,1,0,1763390109,"~/frontend/src/App.tsx"
+-'  1  0  ~/frontend/src/App.tsx
+|4,39,1,0,1763390109,"~/frontend/src/App.tsx"
+-'  1  0  ~/frontend/src/App.tsx
+|4,39,1,0,1763390109,"~/frontend/src/App.tsx"
+-'  1  0  ~/frontend/src/App.tsx
+|4,39,1,0,1763390109,"~/frontend/src/App.tsx"
+-'  1  0  ~/frontend/src/App.tsx
+|4,39,1,0,1763390109,"~/frontend/src/App.tsx"
+-'  1  0  ~/frontend/src/App.tsx
+|4,39,1,0,1763390109,"~/frontend/src/App.tsx"
+-'  1  0  ~/frontend/src/App.tsx
+|4,39,1,0,1763390109,"~/frontend/src/App.tsx"
+-'  1  0  ~/frontend/src/App.tsx
+|4,39,1,0,1763390109,"~/frontend/src/App.tsx"
+-'  1  0  ~/frontend/src/App.tsx
+|4,39,1,0,1763390109,"~/frontend/src/App.tsx"
+-'  1  0  ~/frontend/src/App.tsx
+|4,39,1,0,1763390109,"~/frontend/src/App.tsx"
+-'  1  0  ~/frontend/src/App.tsx
+|4,39,1,0,1763390109,"~/frontend/src/App.tsx"
+-'  1  0  ~/frontend/src/App.tsx
+|4,39,1,0,1763390109,"~/frontend/src/App.tsx"
+-'  1  0  ~/frontend/src/App.tsx
+|4,39,1,0,1763390109,"~/frontend/src/App.tsx"
 
 # History of marks within files (newest to oldest):
+
+> ~/frontend/src/pages/Orders.tsx
+	*	1763391007	0
+	"	186	0
+	^	186	0
+	.	185	22
+	+	1	51
+	+	1	22
+	+	1	0
+	+	1	22
+	+	2	0
+	+	185	22
+
+> ~/frontend/src/pages/Listing.tsx
+	*	1763390958	0
+	"	204	0
+	^	204	1
+	.	204	0
+	+	1	0
+	+	1	1
+	+	1	0
+	+	1	1
+	+	1	0
+	+	1	1
+	+	1	0
+	+	1	1
+	+	1	0
+	+	1	1
+	+	1	0
+	+	1	1
+	+	1	0
+	+	1	1
+	+	1	0
+	+	1	1
+	+	1	0
+	+	1	1
+	+	1	0
+	+	1	1
+	+	1	0
+	+	1	1
+	+	1	0
+	+	1	1
+	+	1	0
+	+	1	1
+	+	2	0
+	+	204	0
+
+> ~/frontend/src/pages/Cart.tsx
+	*	1763390910	0
+	"	396	0
+	^	396	0
+	.	395	20
+	+	1	19
+	+	1	0
+	+	1	19
+	+	1	0
+	+	1	19
+	+	1	0
+	+	1	20
+	+	1	0
+	+	1	20
+	+	1	0
+	+	1	20
+	+	1	0
+	+	1	20
+	+	1	0
+	+	1	20
+	+	1	0
+	+	1	20
+	+	1	0
+	+	1	20
+	+	1	0
+	+	1	20
+	+	1	0
+	+	1	51
+	+	1	20
+	+	1	0
+	+	1	20
+	+	1	0
+	+	1	20
+	+	1	0
+	+	1	20
+	+	1	0
+	+	1	20
+	+	1	0
+	+	1	20
+	+	1	0
+	+	1	20
+	+	2	0
+	+	395	20
+
+> ~/frontend/src/App.tsx
+	*	1763390112	0
+	"	35	18
+	^	35	19
+	.	35	18
+	+	1	0
+	+	1	18
+	+	1	0
+	+	1	18
+	+	1	0
+	+	1	19
+	+	1	0
+	+	8	19
+	+	1	0
+	+	3	0
+	+	2	18
+	+	2	0
+	+	35	18
+
+> ~/frontend/src/pages/Profile.tsx
+	*	1763389567	0
+	"	301	0
+	^	301	0
+	.	300	23
+	+	1	0
+	+	1	22
+	+	1	0
+	+	1	23
+	+	2	0
+	+	300	23
+
+> ~/frontend/src/pages/Pro
+	*	1763389557	0
+	"	1	0
+
+> ~/database/models/User.js
+	*	1763389079	0
+	"	1	0
+	^	13	41
+	.	13	40
+	+	1	37
+	+	1	3
+	+	1	27
+	+	1	3
+	+	1	40
+	+	1	56
+	+	1	0
+	+	1	34
+	+	1	3
+	+	1	0
+	+	1	10
+	+	1	37
+	+	53	22
+	+	2	21
+	+	5	19
+	+	19	18
+	+	51	19
+	+	54	0
+	+	49	0
+	+	48	2
+	+	31	9
+	+	35	5
+	+	42	7
+	+	7	40
+	+	16	2
+	+	13	40
+
+> ~/database/models/Product.js
+	*	1763355768	0
+	"	9	36
+	^	9	37
+	.	10	0
+	+	10	25
+	+	1	25
+	+	1	22
+	+	1	37
+	+	14	25
+	+	13	0
+	+	9	37
+	+	10	0
+
+> ~/frontend/src/pages/Sell.tsx
+	*	1763354638	0
+	"	270	0
+	^	270	1
+	.	270	0
+	+	1	0
+	+	1	1
+	+	1	0
+	+	1	1
+	+	1	0
+	+	1	44
+	+	1	1
+	+	1	0
+	+	1	1
+	+	1	78
+	+	1	0
+	+	1	78
+	+	1	0
+	+	1	44
+	+	1	1
+	+	1	0
+	+	1	44
+	+	1	1
+	+	1	0
+	+	1	1
+	+	1	0
+	+	1	44
+	+	1	1
+	+	1	0
+	+	2	0
+	+	270	0
+
+> /etc/nginx/sites-available/mern_project
+	*	1763353232	0
+	"	25	0
+	^	25	0
+	.	24	1
+	+	1	0
+	+	1	1
+	+	2	0
+	+	26	0
+	+	24	1
+
+> ~/backend/api.js
+	*	1763352100	0
+	"	721	0
+	^	721	0
+	.	720	3
+	+	725	0
+	+	723	0
+	+	718	5
+	+	718	3
+	+	718	6
+	+	718	2
+	+	722	0
+	+	720	3
+
+> ~/frontend/src/components/Navbar.tsx
+	*	1763349160	0
+	"	1	0
+	^	70	0
+	.	1	0
+	+	1	0
+	+	1	21
+	+	1	0
+	+	1	21
+	+	1	0
+	+	1	21
+	+	1	0
+	+	1	22
+	+	1	0
+	+	69	22
+	+	1	0
+
+> /etc/nginx/sites-available/default
+	*	1763346724	0
+	"	26	0
+	^	26	1
+	.	26	0
+	+	1	15
+	+	1	0
+	+	1	1
+	+	1	0
+	+	1	1
+	+	1	0
+	+	1	1
+	+	2	0
+	+	26	0
+
+> ~/backend/server.js
+	*	1763346394	0
+	"	48	0
+	.	48	0
+	+	40	0
+	+	38	60
+	+	49	0
+	+	48	50
+	+	49	0
+	+	48	0
+
+> ~/frontend/src/pages/ForgotPassword.tsx
+	*	1763339226	0
+	"	97	0
+	^	97	0
+	.	96	1
+	+	1	1
+	+	1	0
+	+	1	1
+	+	2	0
+	+	96	1
+
+> ~/frontend/index.html
+	*	1763338256	0
+	"	1	0
+
+> ~/frontend/src/pages/Login.tsx
+	*	1763338239	0
+	"	103	0
+	^	103	0
+	.	102	21
+	+	1	0
+	+	1	20
+	+	2	0
+	+	102	21
+
+> ~/frontend/src/pages/EditProduct.tsx
+	*	1763334211	0
+	"	236	0
+	^	236	0
+	.	235	1
+	+	235	1
+
+> ~/frontend/src/App.
+	*	1763334146	0
+	"	1	0
+
+> ~/backend/nano
+	*	1763330716	0
+	"	1	0
+
+> ~/frontend/src/pages/ProductDetails.tsx
+	*	1763324948	0
+	"	113	0
+	^	113	1
+	.	113	0
+	+	113	0
+
+> ~/frontend/src/pages/L
+	*	1763321331	0
+	"	1	0
+
+> /var/www/knights/index.html
+	*	1763258579	0
+	"	5	51
+	^	5	52
+	.	5	51
+	+	5	51
+
+> ~/frontend/README.md
+	*	1763258124	0
+	"	61	0
+
+> ~/backend/.env
+	*	1763254221	0
+	"	1	0
+
+> ~/database/models/OrderItem.js
+	*	1763249003	0
+	"	7	41
+	^	7	42
+	.	7	42
+	+	11	27
+	+	7	42
+
+> ~/database/models/Order.js
+	*	1763248943	0
+	"	5	41
+	^	5	42
+	.	5	41
+	+	11	23
+	+	5	41
 
 > ~/database/testProduct.js
 	*	1761247763	0
@@ -292,16 +1145,6 @@
 	.	16	0
 	+	22	5
 	+	16	0
-
-> ~/database/models/Product.js
-	*	1761247711	0
-	"	10	22
-	^	10	23
-	.	10	22
-	+	22	25
-	+	12	25
-	+	3	22
-	+	10	22
 
 > ~/database/testUser.js
 	*	1761247658	0
@@ -319,30 +1162,6 @@
 	+	19	0
 	+	12	24
 	+	13	29
-
-> ~/database/models/User.js
-	*	1761246996	0
-	"	12	0
-	^	27	0
-	.	27	0
-	+	1	37
-	+	1	3
-	+	1	27
-	+	1	3
-	+	1	40
-	+	1	56
-	+	1	0
-	+	1	34
-	+	1	3
-	+	1	0
-	+	1	10
-	+	1	37
-	+	26	22
-	+	2	21
-	+	5	19
-	+	12	18
-	+	24	19
-	+	27	0
 
 > ~/database/database.js
 	*	1761202713	0
@@ -418,10 +1237,6 @@
 	"	1	0
 	.	1	0
 	+	1	0
-
-> ~/backend/server.js
-	*	1760718973	0
-	"	1	0
 
 > ~/database/connect.js
 	*	1760718784	0

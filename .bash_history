@@ -469,3 +469,1412 @@ nano /etc/nginx/sites-available/default
 cd /var/cop4331Server
 pm2 start server.js --name "espress-server"
 pm2 startup
+ls
+ls -a /root/project
+find /root -name ".git" -type d 2>/dev/null
+ls
+rm -rf /root/.git
+rm -rf /root/frontend /root/backend
+cd /root
+git clone https://github.com/vlads33/COP4331C-Large-Project-.git project
+ls -a /root
+ls
+rm -rf /root/frontend /root/backend
+cd /root/project
+ls
+cd ..
+ls
+cd  project
+ls
+cd frontend/
+ls
+cd /root/project
+mv /root/project/.* /root/project/* /root/
+cd ..
+ls
+rm -rf /root/project
+ls -a /root
+ls
+cd /root
+git pull
+ls -a /root/project
+ls
+cd frontend/
+ls
+npm install
+ls -R /root/project | head -50
+cd
+ls -R /root/project | head -50
+ls
+ls -R /root/project | head -50
+pm2 list
+~/project
+ls
+cd frontend/
+ls
+git pull
+npm build
+npm run build
+ls
+cd ..
+ls
+cd database
+ls
+cd ..
+ls
+cd backend
+ls
+cd ..
+ls
+cdcd database
+ls
+cd frontend
+ls
+cd
+ls
+cd bac
+cd backend/
+npm ins
+ls
+cd npm install
+ls
+cd ..
+ls
+cd database/
+ls
+npm install
+ls
+cd ..
+ls
+cd frontend/
+ls
+npm run build
+pm2 restart all
+cd ..
+ls
+sudo apt update
+sudo apt upgrade -y
+ls
+cd 
+cd ..
+ls
+cd var
+ls
+cd www
+ls
+cd knights/
+ls
+cd ..
+ls 
+cd ..
+ls
+cd ..
+lscd
+cd
+ls
+pm2 list
+ls
+ls -R /root
+lls -R /root
+ls -R /root
+clear
+ls -R /root
+find / -maxdepth 3 -type d \( -name "backend" -o -name "database" -o -name "project" -o -name "LargeProject" \) 2>/dev/null
+ls
+pm2 ls
+pm2 describe express-server
+cd /root/frontend
+npm install
+npm run build
+ls
+vim /etc/nginx/sites-available/default
+nginx -t
+systemctl restart nginx
+/root/backend/index.js
+ls
+cd 
+/root/backend/index.js
+ls
+cd backend/
+ls
+vim server.js 
+cat server.js 
+cd /root/backend
+npm install cors
+ls
+pm2 restart backend
+cat /etc/nginx/sites-available/default
+curl -I http://127.0.0.1:5000/api/login
+cd 
+curl -I http://127.0.0.1:5000/api/login
+curl -I http://127.0.0.1:5000/api/login -X OPTIONS
+Access-Control-Allow-Origin: *
+ls
+cd backend/
+ls
+vim server.js 
+cat server.js 
+cd
+pm2 describe backend
+pm2 stop backend
+pm2 delete backend
+pm2 start /root/backend/server.js --name backend
+pm2 save
+pm2 describe backend
+curl -I http://127.0.0.1:5000/api/login
+cd backend/
+ls
+npm install express mongoose dotenv cors
+node server.js 
+ls
+cd ..
+ls
+pm2 list
+ls
+cd backend/
+ls
+cd ..
+ls
+cd database/
+ls
+mongosh -u root -p cop4331cLargeproject
+mongosh "mongodb+srv://admin:cop4331c@largeprojectdb.qqafgm9.mongodb.net"
+ls
+cd
+ls
+cd backend
+ls
+grep -R "161.35" -n src
+cd 
+grep -R "161.35" -n src
+cd ..
+curl -I http://127.0.0.1:5000/api/test
+ls
+pm2 logs backend --lines 50
+nano /root/backend/api.js
+pm2 restart backend
+curl http://127.0.0.1:5000/api/test
+nano +638 /root/backend/api.js
+pm2 restart backend
+curl http://127.0.0.1:5000/api/test
+nano +638 /root/backend/api.js
+ks
+ls
+cd 
+ls
+cat /root/backend/server.js
+cat /etc/nginx/sites-available/default
+nano /root/backend/server.js
+pm2 restart express-server
+pm2 ls
+curl http://127.0.0.1:5000/api/login
+pm2 ls
+pm2 logs express-server --lines 200
+nano /root/backend/api.js
+ls
+nano /root/backend/api.js
+cd backend
+nano .env
+ls -al
+pm2 list
+pm2 log
+nano api.js
+ls -al
+nano server.js
+ls
+ls -al
+nano api.js
+nano .env
+pm2 restart express-server
+pm2 log
+pm2 describe backend
+pm2 list
+nano api.js
+pm2 log
+nano api.js
+pm2 restart express-server
+pm2 list
+pm2 log
+nano api.js
+pm2 restart express-server
+pm2 log
+npm install multer
+pm2 log
+npm install express bcrypt path
+pm2 restart express-server
+pm2 log
+cd ~
+cd database
+ls
+npm install bcrypt
+nano models/User.js
+pm2 restart express-server
+pm2 log
+cd ~
+nano backend/api.js
+pm2 log
+ls database/models
+ls database
+ls database/images
+ls database/models
+ls /root
+ls /
+ls database
+nano database/models/User.js
+git
+git restore
+git log
+ls database/models
+logout
+ls
+ls database/models
+ls -al
+ls .mongodb
+ls database
+nano database/database.js
+ls database/models
+nano backend/.env
+cd backend
+ls
+ls -al
+npm install --save @sendgrid/mail
+pm2 log
+ls
+history
+cd ..
+ls
+lks
+ls
+cd frontend/
+ls
+cd 
+ls
+cd backend/
+ls
+cat api.js 
+sudo nano /etc/nginx/sites-available/default
+lsof -i :5000
+pm2 list
+pm2 restart express-server
+pm2 log
+nano backend/api.js
+nano database/models/Order.js
+nano database/models/User.js
+pm2 restart express-server
+pm2 log
+pm2 list
+pm2 delete backend
+pm2 restart express-server
+pm2 log
+lgout
+logout
+ls
+cd database
+ls
+cd models
+ls
+LS
+ls
+vim Order.js
+ls
+vim OrderItem.js
+ls
+cd ..
+ls
+cd ..
+ls
+cd backend/
+ls
+cd node_modules/
+ls
+cd ..
+ls
+cd ..
+ls
+cd frontend/
+ls
+cd ..
+ls
+cd frontend/
+ls
+cd ..
+ls
+cd backend/
+ls
+vim api.js 
+ls
+cd
+cd database/
+ls
+cd models/
+ls
+vim User.js 
+find /root -maxdepth 3 -type d \( -name "frontend" -o -name "backend" \) -print
+find /root -maxdepth 4 -name ".env" -print
+ls
+cd backend/
+ls
+vim .env
+find /root -maxdepth 3 -type d \( -name "frontend" -o -name "backend" \) -print
+ls
+cd ..
+ls
+cd frontend/
+ls
+git status
+ls
+vim README.md 
+ls
+cd src
+ls
+cd components/
+ls
+vim Navbar.tsx 
+cd ..
+ls
+cd ..
+ls
+npm 
+npm run build
+npm run dev
+sudo systemctl reload nginx
+ls
+systemctl restart nginx
+cd 
+ls
+cd ..
+ls
+cd var
+ls
+cd www
+ls
+cd html
+ls
+npm run dev
+cd ..
+ls
+cd knigts
+ls
+cd knights/
+ls
+vim index.html 
+ls
+vim index.html
+cd ..
+ls
+cd 
+ls
+cd /root/frontend
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+ls
+pm2 log
+nano database/models/Order.js
+pm2 log
+pm2 restart express-server
+pm2 log
+nano database/models/Product.js
+nano database/models/User.js
+pm2 log
+pm2 list
+nano backend/api.js
+nano database/Product.js
+nano database/models/Product.js
+nano backend/createJWT.js
+nano backend/api.js
+cd backend
+npm install --save @sendgrid/mail
+nano backend/api.js
+nano api.js
+pm2 restart express-server
+pm2 log
+cd ~
+nano database/models/User.js
+pm2 log
+pm2 list
+pm2 log
+nano backend/api.js
+pm2 restart express-server
+pm2 log
+nano database/models/User.js
+nano backend/api.js
+pm2 restart express-server
+pm2 log
+nano backend/api.js
+pm2 restart express-server
+pm2 log
+nano backend/api.js
+nano database/models/User.js
+pm2 restart express-server
+pm2 log
+nano backend/api.js
+pm2 log
+pm2 list
+pm2 log
+logout
+cat database/models/Product.js
+pm2 restart express-server
+pm2 log
+nano backend/api.js
+pm2 restart express-server
+pm2 log
+logout
+cd backend/
+ls
+cat api.js 
+ls
+cd ..
+ls
+cd frontend/
+ls
+git pull
+npm install   # only needed if dependencies changed
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+ls
+cd src
+ls
+cd pages
+ls
+cd 
+ls
+cd frontend/
+ls
+git pull
+git status
+clear
+ls
+cd frontend/
+ls
+cd src
+cd ..
+ls
+s
+ls
+npm run build
+ls
+git status
+ls
+git status
+git sta
+git status
+ls
+git status
+ls
+cd ..
+ls
+ls
+cd database/
+ls
+cd models
+ls
+vim Product.js 
+pm2 list
+pm2 log
+logout
+pm2 log
+logout
+pm2 list
+pm2 log
+logout
+pm2 log
+pm2 list
+logout
+pm2 log
+nano backend/api.js
+pm2 restart express-server
+pm2 log
+pm2 list
+pm2 log
+logout
+pm2 log
+logout
+ls
+cd frontend/
+ls
+git pull
+ls
+cd frontend/
+ls
+git status
+ls
+cd src
+ls
+vim App.tsx 
+cd components/
+vim Navbar.tsx 
+cd 
+ls
+cd frontend/
+ls
+cd sr
+cd src
+ls
+cd pages
+ls
+vim Cart.tsx
+ls
+vim Listing.tsx 
+ls
+vin Login.tsx 
+vim L
+ls
+vim Login.tsx 
+vim Profile.tsx 
+vim Sell.tsx 
+ls
+cd ..
+ls
+cd ..
+ls
+npm run build
+cd src
+cd pages
+ls
+vim Cart.tsx 
+cd 
+cd frontend/
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+ls
+cd src
+ls
+cd pages
+cd ..
+cd components/
+vim Navbar.tsx 
+ls
+cd ..
+ls
+cd ..
+ls
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+ls
+cd src 
+cd components/
+vim Navbar.tsx 
+cd 
+cd frontend/
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+pm2 log
+logout
+ls
+cd frontend/
+ls
+cd src
+ls
+cd components/
+ls
+cd ..
+ls
+cd pages
+ls
+vim Cart.tsx 
+ls
+cd ..
+ls
+cd ..
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+ls
+cd src
+ls
+vim App.tsx
+cd pages
+ls
+vim Listing.tsx 
+vim ProductDetails.tsx
+ls
+vim Sell.tsx 
+cd ..
+ls
+cd ..
+ls
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+ls
+cd src
+ls
+cd page
+cd pages/
+ls
+vim Sell.tsx 
+vim Listing.tsx
+cd ..
+ls
+cd ..
+ls
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+ls 
+ls
+cd src
+ls
+cd pages
+ls
+vim Listing.tsx 
+cd ..
+ls
+cd ..
+
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+cd 
+ls
+cd frontend/
+cd src/
+cd pages/
+vim Listing.tsx 
+cd 
+cd frontend/
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+ls
+cd frontend/
+ls
+cd src
+ls
+cd pages
+ls
+vim Listing.tsx 
+cat L
+cat Listing.tsx 
+ls
+vim Listing.tsx 
+cd ..
+ls
+cd ..
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+ls
+cd src
+ls
+cd pages
+ls
+vim Cart.tsx 
+cd ..
+ls
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+ls
+cd src
+lsc
+ls
+cd pages
+ls
+vim Cart.tsx 
+cd ..
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+ls
+cd src
+ls
+cd pages
+ls
+vim Cart.tsx 
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+ls
+cd ..
+ls
+cd ..
+ls
+cp -r dist/* /var/www/knights/
+ls
+cd pages
+ls
+vim Listing.tsx 
+vim Sell.tsx 
+cd ..
+ls
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+ls 
+cd src 
+ls
+cd pages
+ls
+cat Cart.tsx 
+ls
+vim Cart.tsx 
+cd ..
+ls
+npm run build
+cd src
+cd pages
+ls
+vim Cart.tsx 
+cd ..
+ls
+cd ..
+ls
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+cd src
+ls
+cd pages
+ls
+cat Sell.tsx 
+vim Sell.tsx 
+cd 
+cd frontend/
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+cd src
+cd pages
+vim Sell.tsx 
+cd ..
+ls
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+cd
+grep -R "user_products" -n /root
+ls
+cd backend/
+ls
+cat api.js 
+vim nano /etc/nginx/sites-available/default
+vim /etc/nginx/sites-available/default
+sudo nginx -t
+sudo systemctl reload nginx
+ls
+cd ..
+ls
+cd frontend/
+ls
+cd src
+ls
+cd pages
+ls
+vim Sell.tsx 
+cat Sell.tsx 
+cd 
+ls
+cd frontend/
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+sudo systemctl restart nginx
+ls
+cd 
+ls
+cd backend/
+ls
+cd ..
+ls
+cd database/
+ls
+cd images/
+ls
+cd ..
+ls
+cd models/
+ls
+vim Product.js 
+cat Product.js 
+cd
+cd frontend/
+cd src/pages
+ls
+vim Sell.tsx 
+cd ..
+npm run build
+cd src/pages
+vim Sell.tsx 
+cd 
+cd frontend/
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+cd src/pages
+vim Sell.tsx 
+cd ..
+ls
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+ls
+cd frontend/
+ls
+cd src/pages
+ls
+vim Sell.tsx q
+vim Sell.tsx 
+cd ..
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+ls
+cd ..
+ls
+cd backend
+cd ba
+ls
+cd ..
+cd database/
+ls
+cd images
+ls
+cd ..
+ls
+vim /etc/nginx/sites-available/default
+nginx -t
+systemctl restart nginx
+ls
+cd images ls
+cd images || ls
+ls
+cd frontend/
+ls
+cd src 
+ls
+vim App.
+vim App.tsx 
+cd pages
+ls
+vim Sell.tsx 
+vim EditProduct.tsx
+cd ..
+ls
+cd ..
+npm run buil'd
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+cd src/pages
+vim Listing.tsx 
+cd ..
+ls
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+ls
+lsl
+ls
+cd src
+cd pages
+ls
+cat Cart.tsx 
+ls
+cat L
+cat Listing.tsx 
+clear
+cat Sell.tsx 
+ls
+cd frontend/
+ls
+cd src
+ls
+vim ForgotPassword.tsx
+ls
+cd ..
+vim App.tsx 
+ls
+ls
+cd backend/
+ls
+vim server.js 
+ls
+vim api.js 
+ls
+cd ..
+ls
+cd frontend/
+ls
+vim index.html 
+pm2 list
+pm2 log
+logout
+pm2 log
+logout
+ls database/images
+logout
+ls
+cd frontend
+ls
+cd src
+ls
+cd pages
+ks
+ls
+vim Login.tsx 
+ls
+cd ..
+ls
+cd ..
+ls
+ks
+ls
+cd ..
+cd frontend/
+ls
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+ls
+cd src
+ls
+cd pages
+ls
+vim ForgotPassword.tsx 
+ls
+cd ..
+ls
+npm run dev
+npm run build
+ls
+cd src
+cd pages
+ls
+vim ForgotPassword.tsx 
+cd //
+cd..
+cd
+ls
+cd frontend/
+npm run buil
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+cd src/pages
+vim Pro
+vim Profile.tsx 
+cd ..
+ls
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+cd src/pages
+vim Cart.tsx 
+cd ..
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+cd src/pages
+vim Cart.tsx 
+cd ..
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+cd src/pages
+ls
+vim Cart.tsx 
+cd ..
+ls
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
+export interface CartItem {
+}
+export interface ProductInfo {
+}
+interface GetItemsResponse {
+}
+interface SearchProductsResponse {
+}
+interface GenericAPIResponse {
+}
+const Cart: React.FC = () => {
+};
+export default Cart;
+cd src/pages
+ls
+vim Cart.tsx 
+cd ..
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+cd src/pages
+ls
+vim Cart.tsx 
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+cd ..
+cp -r dist/* /var/www/knights/
+ls
+cd 
+ls
+cd backend/
+ls
+cd
+ls
+cd database/
+ls
+cd 
+ls
+cd backend/
+ls
+vim server.js 
+cat server.js 
+vim server.js 
+cd
+ls
+cd backend/
+ls
+cat api.js 
+vim api.js 
+ls
+cd 
+ls
+cd database/
+ls
+cd images
+ls
+cd
+cd backend/
+ls
+cat server.js 
+vim server.js 
+pm2 restart all
+cd
+ls
+cd frontend/
+ls
+cd
+ls
+cd database/
+ls
+cd images
+ls
+cat /etc/nginx/sites-available/default
+vim /etc/nginx/sites-available/default
+sudo nginx -t
+sudo systemctl reload nginx
+cd 
+ls -l /root/database/images/
+ls
+cd backend/
+vim /etc/nginx/sites-available/default
+ls
+nginx -T | grep -n "location /images"
+nginx -T | grep -n "server_name"
+ls /etc/nginx/sites-available
+nginx -T | less
+clear
+ls -l /etc/nginx/sites-enabled
+vim /etc/nginx/sites-available/mern_project
+nginx -t
+systemctl reload nginx
+vim /etc/nginx/sites-available/mern_project
+cd 
+ls
+cd frontend/
+ls
+cd src/pages
+ls
+cd 
+cd frontend/
+cd src
+cd components/
+ls
+vim Navbar.tsx 
+cd ..
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+cd src/pages
+vim Cart.tsx 
+cd ..
+npm run build
+cd src/pages
+ls
+vim Orders.tsx
+cd ..
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+cd src/pages
+ls
+vim Cart.tsx 
+cd ..
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+ls
+cd src/components
+vim Navbar.tsx 
+cd ..
+npm run build
+cd src/components
+vim Navbar.tsx 
+cd ..
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+ls
+cd src/pages
+vim Listing.tsx 
+cd ..
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+ls
+cd ..
+lds==s
+ls
+cd backen
+cd backend/
+ls
+cat api.js 
+vim api.js 
+cat api.js 
+ls /root/database/image
+cd
+ls /root/database/images
+cat /etc/nginx/sites-enabled/default
+cat /etc/nginx/sites-enabled/
+cat /etc/nginx/nginx.conf
+ls /etc/nginx/sites-available/
+cat /etc/nginx/sites-available/mern_project
+vim /etc/nginx/sites-available/mern_project
+sudo nginx -t
+sudo systemctl reload nginx
+sudo chmod -R 755 /root/database/images
+sudo chmod -R 755 /root/database
+sudo chmod -R 755 /root/database/images
+sudo chmod 755 /root
+ls
+cd backend
+cd 
+cd database/
+cd images
+ls
+cd 
+ls
+cd frontend/
+ls
+cd src
+ls
+cd pages/
+ls
+vim Listing.tsx 
+cd ..
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+cd src
+cd pages/
+vim Listing.tsx 
+npm run build
+cd 
+cd frontend/
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+cd src
+cd pages
+ls
+vim Listing.tsx 
+cd ..
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+cd src/pages
+vim Sell.tsx 
+cd ..
+ls
+cd ..
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+cd src/pages
+vim Sell.tsx 
+npm run build
+cd 
+cd frontend/
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+cd src/pages
+vim Sell.tsx 
+npm run build
+cd .. 
+cd ..
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+cd 
+ls
+cd backend/
+ls
+cd 
+ls
+cd database/
+ls
+vim models/
+ls
+nano backend/api.js
+pm2 list
+pm2 describe express-server
+nano backend/server.js
+nano backend/api.js
+pm2 restart express-server
+nano database/models/Order.js
+nano backend/api.js
+pm2 restart express-server
+pm2 log
+nano backend/api.js
+pm2 restart express-server
+pm2 log
+nano backend/api.js
+pm2 restart express-server
+pm2 log
+nano backend/api.js
+pm2 restart express-server
+pm2 log
+logout
+ls
+cd database/
+ls
+cd models
+ls
+vim Product.js 
+pm2 list
+pm2 restart express-server
+db.products.find().pretty()
+mongosh "mongodb+srv://admin:cop4331c@largeprojectdb.qqafgm9.mongodb.net"
+cd 
+cd fron
+cd frontend/
+ls
+cd src/pages
+vim Listing.tsx 
+npm run build
+cd ..
+ls
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+cd src/pages
+vim Listing.tsx 
+cd ..
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+cd src/pages
+vim Cart.tsx 
+cd .. ..
+cd ..
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+cd ..
+ls
+cd backend
+cd 
+cd database
+ls
+cd models
+ls
+vim Product.js 
+ls
+cd 
+ls
+cd frontend
+lscd
+ls
+cd src
+ls
+cd pages/
+ls
+cat Listing.tsx 
+cat Cart.tsx 
+cat Na
+cat Sell.tsx 
+ls
+cat Orders.tsx 
+ls
+cd ..
+cat App.tsx 
+cd components/
+cat Navbar.tsx 
+lsexit
+ls
+cd frontend/
+ls
+cd backend/
+ls
+cd ..
+cd data
+cd database/
+ls
+cd models/
+ls
+vim User.js 
+cat User.js 
+ls
+cd ..
+ls
+cd frontend/
+ls
+cd src/pages
+ls
+cd Pr
+vim Pro
+vim Profile.tsx 
+cd ..
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+cd src/pages
+vim Cart.tsx 
+npm run build
+vim Cart.tsx 
+npm run build
+cd ..
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+cd src
+vim App.tsx 
+cd pages/
+vim Orders.tsx 
+npm run build
+ls
+cd ..
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+cd src/pages
+vim Listing.tsx 
+npm run build
+cd ..c
+cd ..
+ls
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+ls
+cd frontend/
+ls
+cd src
+cd pages/
+vim Cart.tsx 
+vim Listing.tsx 
+vim Orders.tsx 
+npm run build
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+cd ..
+rm -rf /var/www/knights/*
+cp -r dist/* /var/www/knights/
+pm2 log
+logout

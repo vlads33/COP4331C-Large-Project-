@@ -10,6 +10,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "@sendgrid/mail": "^8.1.6",
         "bcrypt": "^6.0.0",
         "body-parser": "^1.20.3",
         "cors": "^2.8.5",
@@ -19,6 +20,7 @@
         "mongodb": "^6.20.0",
         "mongoose": "^8.19.4",
         "mongoose-int32": "^0.6.0",
+        "multer": "^2.0.2",
         "path": "^0.12.7"
     }
 }
